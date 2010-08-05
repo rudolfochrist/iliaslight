@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  dropdown_id: 1
+  option: MyString
+
+two:
+  dropdown_id: 1
+  option: MyString

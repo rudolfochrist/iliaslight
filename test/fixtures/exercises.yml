@@ -1,0 +1,9 @@
+one:
+  title: MyString
+  chapter: MyString
+  question: MyText
+
+two:
+  title: MyString
+  chapter: MyString
+  question: MyText

@@ -1,0 +1,10 @@
+<div class="fields">
+	<p class="dropdown_definition">
+		<%= f.text_field :definition %>
+		<%= link_to_remove_fields "remove", f %>
+	</p>
+	<p><%= link_to_add_fields "Add option", f, :dropdown_options %></p>
+	<% f.fields_for :dropdown_options do |dropdown_options_builder| %>
+		<%= render 'dropdown_option_fields', :f => dropdown_options_builder %>
+		<% end %>
+</div>

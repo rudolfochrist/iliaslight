@@ -1,0 +1,63 @@
+<% form_for @exercise do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :chapter %><br />
+    <%= f.text_field :chapter %>
+  </p>
+  <p>
+    <%= f.label :question %><br />
+    <%= f.text_area :question %>
+  </p>
+  <p><%= f.submit %></p>
+
+	<p><strong>Sequence of Types</strong></p>
+	<p><%= link_to_add_fields "Add type to sequence", f, :sequence_lines %></p>
+	<% f.fields_for :sequence_lines do |seq_line_builder| %>
+		 <%= render 'sequence_line_fields', :f => seq_line_builder %>
+	<% end %>
+	
+	<p><strong>Multiple Choice</strong></p>
+	<p><%= link_to_add_fields "Add choice", f, :multiple_choice_options %></p>
+	<% f.fields_for :multiple_choice_options do |mc_builder| %>
+	<%= render 'multiple_choice_option_fields', :f => mc_builder %>
+	<% end %>
+	
+	<p><strong>Single Choice</strong></p>
+	<p>Please select only one checkbox</p>
+	<p><%= link_to_add_fields "Add choice", f, :single_choice_options %></p>
+	<% f.fields_for :single_choice_options do |sc_builder| %>
+	<%= render "single_choice_option_fields", :f => sc_builder %>
+	<% end %>
+		
+	
+	<p><strong>Marktext</strong></p>
+	<p><%= link_to_add_fields "Add marktext", f, :marktexts %></p>
+	<% f.fields_for :marktexts do |marktext_builder| %>
+	<%= render 'marktext_fields', :f => marktext_builder %>
+	<% end %>
+	
+	<p><strong>Cloze</strong></p>
+	<p>Gaps are indicated with a "#". Coherent words after the hash are the 
+		 the expected values.</p>
+	<p><%= link_to_add_fields "Add cloze", f, :clozes %></p>
+	<% f.fields_for :clozes do |cloze_builder| %>
+		<%= render 'cloze_fields', :f => cloze_builder %>
+	<% end %>
+	
+	<p><strong>Dropdown</strong></p>
+	<p><%= link_to_add_fields "Add dropdown", f, :dropdowns %></p>
+	<% f.fields_for :dropdowns do |dropdown_builder| %>
+		<%= render 'dropdown_fields', :f => dropdown_builder %>
+	<% end %>
+	
+	<p><strong>Help</strong></p>
+	<p>TODO: insert allow markup guide</p>
+	<% f.fields_for :help do |help_builder| %>
+		<%= help_builder.text_area :help_text %>
+	<% end %>
+
+<% end %>
