@@ -1,0 +1,10 @@
+<div class="fields">
+	<p>
+		<%= f.text_field :definition %>
+		<%= link_to_remove_fields "remove", f %>
+	</p>
+	<% f.fields_for :dropdown_options do |ddo_builder| %>
+		<%= render 'dropdown_option_fields', :f => ddo_builder %>
+	<% end %>
+	<p class="dropdown_option"><%= link_to_add_fields "Add option", f, :dropdown_options %></p>
+</div>
