@@ -28338,3 +28338,173 @@ Rendered exercises/_dropdown_definition_fields (7.6ms)
 Rendered exercises/_dropdown_block (15.1ms)
 Rendered exercises/_form (240.3ms)
 Completed in 252ms (View: 241, DB: 2) | 200 OK [http://localhost/exercises/2/edit]
+
+
+Processing ExercisesController#index (for 127.0.0.1 at 2010-08-06 12:26:43) [GET]
+  [4;36;1mExercise Load (0.6ms)[0m   [0;1mSELECT * FROM "exercises" [0m
+Rendering template within layouts/application
+Rendering exercises/index
+Completed in 16ms (View: 8, DB: 1) | 200 OK [http://localhost/exercises]
+
+
+Processing ExercisesController#new (for 127.0.0.1 at 2010-08-06 12:26:45) [GET]
+Rendering template within layouts/application
+Rendering exercises/new
+Rendered exercises/_multiple_choice_option_fields (4.2ms)
+Rendered exercises/_multiple_choice_block (14.7ms)
+Rendered exercises/_single_choice_option_fields (4.2ms)
+Rendered exercises/_single_choice_block (14.3ms)
+Rendered exercises/_marktext_fields (0.5ms)
+Rendered exercises/_marktext_block (2.6ms)
+Rendered exercises/_cloze_fields (0.5ms)
+Rendered exercises/_cloze_block (2.3ms)
+Rendered exercises/_dropdown_option_fields (3.4ms)
+Rendered exercises/_dropdown_definition_fields (75.2ms)
+Rendered exercises/_dropdown_block (87.9ms)
+Rendered exercises/_form (177.3ms)
+Completed in 191ms (View: 180, DB: 0) | 200 OK [http://localhost/exercises/new]
+
+
+Processing ExercisesController#create (for 127.0.0.1 at 2010-08-06 12:27:33) [POST]
+  Parameters: {"commit"=>"Save changes", "authenticity_token"=>"MSScdL9BkSfcZqT6gYWByPoHXRhXMpsg3rFFtw4b738=", "exercise"=>{"dropdowns_attributes"=>{"1281090410609"=>{"dropdown_definitions_attributes"=>{"1281090418843"=>{"_destroy"=>"", "dropdown_options_attributes"=>{"1281090420586"=>{"option"=>"2", "_destroy"=>""}}, "definition"=>"2"}, "1281090417093"=>{"_destroy"=>"", "dropdown_options_attributes"=>{"1281090419963"=>{"option"=>"1", "_destroy"=>""}}, "definition"=>"1"}}, "_destroy"=>""}}, "chapter"=>"453453", "title"=>"54", "help_attributes"=>{"help_text"=>""}, "question"=>"", "single_choices_attributes"=>{"1281090408656"=>{"single_choice_options_attributes"=>{"1281090414402"=>{"option"=>"1", "_destroy"=>"", "check"=>"0"}, "1281090415456"=>{"option"=>"2", "_destroy"=>"", "check"=>"1"}, "1281090416023"=>{"option"=>"3", "_destroy"=>"", "check"=>"0"}}, "_destroy"=>""}}, "multiple_choices_attributes"=>{"1281090407813"=>{"_destroy"=>"", "multiple_choice_options_attributes"=>{"1281090411849"=>{"option"=>"1", "_destroy"=>"", "check"=>"1"}, "1281090412456"=>{"option"=>"2", "_destroy"=>"", "check"=>"0"}, "1281090413024"=>{"option"=>"3", "_destroy"=>"", "check"=>"1"}}}}}}
+  [4;35;1mExercise Create (0.4ms)[0m   [0mINSERT INTO "exercises" ("created_at", "title", "chapter", "updated_at", "question") VALUES('2010-08-06 10:27:33', '54', '453453', '2010-08-06 10:27:33', '')[0m
+  [4;36;1mMultipleChoice Create (0.1ms)[0m   [0;1mINSERT INTO "multiple_choices" ("created_at", "updated_at", "exercise_id") VALUES('2010-08-06 10:27:33', '2010-08-06 10:27:33', 3)[0m
+  [4;35;1mMultipleChoiceOption Create (0.1ms)[0m   [0mINSERT INTO "multiple_choice_options" ("option", "created_at", "updated_at", "multiple_choice_id", "check") VALUES('1', '2010-08-06 10:27:33', '2010-08-06 10:27:33', 3, 't')[0m
+  [4;36;1mMultipleChoiceOption Create (0.1ms)[0m   [0;1mINSERT INTO "multiple_choice_options" ("option", "created_at", "updated_at", "multiple_choice_id", "check") VALUES('2', '2010-08-06 10:27:33', '2010-08-06 10:27:33', 3, 'f')[0m
+  [4;35;1mMultipleChoiceOption Create (0.1ms)[0m   [0mINSERT INTO "multiple_choice_options" ("option", "created_at", "updated_at", "multiple_choice_id", "check") VALUES('3', '2010-08-06 10:27:33', '2010-08-06 10:27:33', 3, 't')[0m
+  [4;36;1mSingleChoice Create (0.1ms)[0m   [0;1mINSERT INTO "single_choices" ("created_at", "updated_at", "exercise_id") VALUES('2010-08-06 10:27:33', '2010-08-06 10:27:33', 3)[0m
+  [4;35;1mSingleChoiceOption Create (0.2ms)[0m   [0mINSERT INTO "single_choice_options" ("option", "created_at", "updated_at", "single_choice_id", "check") VALUES('1', '2010-08-06 10:27:33', '2010-08-06 10:27:33', 1, 'f')[0m
+  [4;36;1mSingleChoiceOption Create (0.1ms)[0m   [0;1mINSERT INTO "single_choice_options" ("option", "created_at", "updated_at", "single_choice_id", "check") VALUES('2', '2010-08-06 10:27:33', '2010-08-06 10:27:33', 1, 't')[0m
+  [4;35;1mSingleChoiceOption Create (0.1ms)[0m   [0mINSERT INTO "single_choice_options" ("option", "created_at", "updated_at", "single_choice_id", "check") VALUES('3', '2010-08-06 10:27:33', '2010-08-06 10:27:33', 1, 'f')[0m
+  [4;36;1mDropdown Create (0.1ms)[0m   [0;1mINSERT INTO "dropdowns" ("created_at", "updated_at", "exercise_id") VALUES('2010-08-06 10:27:33', '2010-08-06 10:27:33', 3)[0m
+  [4;35;1mDropdownDefinition Create (0.1ms)[0m   [0mINSERT INTO "dropdown_definitions" ("created_at", "dropdown_id", "updated_at", "definition") VALUES('2010-08-06 10:27:33', 5, '2010-08-06 10:27:33', '1')[0m
+  [4;36;1mDropdownOption Create (0.1ms)[0m   [0;1mINSERT INTO "dropdown_options" ("option", "created_at", "updated_at", "dropdown_definition_id") VALUES('1', '2010-08-06 10:27:33', '2010-08-06 10:27:33', 4)[0m
+  [4;35;1mDropdownDefinition Create (0.1ms)[0m   [0mINSERT INTO "dropdown_definitions" ("created_at", "dropdown_id", "updated_at", "definition") VALUES('2010-08-06 10:27:33', 5, '2010-08-06 10:27:33', '2')[0m
+  [4;36;1mDropdownOption Create (0.1ms)[0m   [0;1mINSERT INTO "dropdown_options" ("option", "created_at", "updated_at", "dropdown_definition_id") VALUES('2', '2010-08-06 10:27:33', '2010-08-06 10:27:33', 5)[0m
+  [4;35;1mHelp Create (0.1ms)[0m   [0mINSERT INTO "helps" ("created_at", "help_text", "updated_at", "exercise_id") VALUES('2010-08-06 10:27:33', '', '2010-08-06 10:27:33', 3)[0m
+Redirected to http://localhost:3000/exercises/3
+Completed in 106ms (DB: 2) | 302 Found [http://localhost/exercises]
+
+
+Processing ExercisesController#show (for 127.0.0.1 at 2010-08-06 12:27:33) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mExercise Load (0.2ms)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 3) [0m
+Rendering template within layouts/application
+Rendering exercises/show
+Completed in 15ms (View: 6, DB: 0) | 200 OK [http://localhost/exercises/3]
+
+
+Processing ExercisesController#edit (for 127.0.0.1 at 2010-08-06 12:27:34) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mExercise Load (0.2ms)[0m   [0mSELECT * FROM "exercises" WHERE ("exercises"."id" = 3) [0m
+Rendering template within layouts/application
+Rendering exercises/edit
+  [4;36;1mHelp Load (0.3ms)[0m   [0;1mSELECT * FROM "helps" WHERE ("helps".exercise_id = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "multiple_choices" WHERE ("multiple_choices".exercise_id = 3) [0m
+  [4;36;1mMultipleChoice Load (0.1ms)[0m   [0;1mSELECT * FROM "multiple_choices" WHERE ("multiple_choices".exercise_id = 3) [0m
+  [4;35;1mMultipleChoiceOption Load (0.2ms)[0m   [0mSELECT * FROM "multiple_choice_options" WHERE ("multiple_choice_options".multiple_choice_id = 3) [0m
+Rendered exercises/_multiple_choice_option_fields (4.2ms)
+Rendered exercises/_multiple_choice_option_fields (2.5ms)
+Rendered exercises/_multiple_choice_option_fields (2.3ms)
+Rendered exercises/_multiple_choice_option_fields (2.3ms)
+Rendered exercises/_multiple_choice_block (24.2ms)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "single_choices" WHERE ("single_choices".exercise_id = 3) [0m
+  [4;35;1mSingleChoice Load (0.1ms)[0m   [0mSELECT * FROM "single_choices" WHERE ("single_choices".exercise_id = 3) [0m
+  [4;36;1mSingleChoiceOption Load (0.3ms)[0m   [0;1mSELECT * FROM "single_choice_options" WHERE ("single_choice_options".single_choice_id = 1) [0m
+Rendered exercises/_single_choice_option_fields (3.8ms)
+Rendered exercises/_single_choice_option_fields (2.3ms)
+Rendered exercises/_single_choice_option_fields (2.2ms)
+Rendered exercises/_single_choice_option_fields (2.3ms)
+Rendered exercises/_single_choice_block (95.0ms)
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "marktexts" WHERE ("marktexts".exercise_id = 3) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "clozes" WHERE ("clozes".exercise_id = 3) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "dropdowns" WHERE ("dropdowns".exercise_id = 3) [0m
+  [4;36;1mDropdown Load (0.1ms)[0m   [0;1mSELECT * FROM "dropdowns" WHERE ("dropdowns".exercise_id = 3) [0m
+  [4;35;1mDropdownDefinition Load (0.2ms)[0m   [0mSELECT * FROM "dropdown_definitions" WHERE ("dropdown_definitions".dropdown_id = 5) [0m
+  [4;36;1mDropdownOption Load (0.2ms)[0m   [0;1mSELECT * FROM "dropdown_options" WHERE ("dropdown_options".dropdown_definition_id = 4) [0m
+Rendered exercises/_dropdown_option_fields (1.7ms)
+Rendered exercises/_dropdown_option_fields (1.9ms)
+Rendered exercises/_dropdown_definition_fields (14.3ms)
+  [4;35;1mDropdownOption Load (0.2ms)[0m   [0mSELECT * FROM "dropdown_options" WHERE ("dropdown_options".dropdown_definition_id = 5) [0m
+Rendered exercises/_dropdown_option_fields (1.7ms)
+Rendered exercises/_dropdown_option_fields (1.8ms)
+Rendered exercises/_dropdown_definition_fields (10.2ms)
+Rendered exercises/_dropdown_option_fields (2.0ms)
+Rendered exercises/_dropdown_definition_fields (7.4ms)
+Rendered exercises/_dropdown_block (47.1ms)
+Rendered exercises/_multiple_choice_option_fields (3.1ms)
+Rendered exercises/_multiple_choice_block (8.6ms)
+Rendered exercises/_single_choice_option_fields (2.9ms)
+Rendered exercises/_single_choice_block (8.5ms)
+Rendered exercises/_marktext_fields (0.5ms)
+Rendered exercises/_marktext_block (2.3ms)
+Rendered exercises/_cloze_fields (0.6ms)
+Rendered exercises/_cloze_block (68.6ms)
+Rendered exercises/_dropdown_option_fields (2.2ms)
+Rendered exercises/_dropdown_definition_fields (7.7ms)
+Rendered exercises/_dropdown_block (15.4ms)
+Rendered exercises/_form (338.9ms)
+Completed in 350ms (View: 339, DB: 3) | 200 OK [http://localhost/exercises/3/edit]
+
+
+Processing ExercisesController#update (for 127.0.0.1 at 2010-08-06 12:27:40) [PUT]
+  Parameters: {"commit"=>"Save changes", "authenticity_token"=>"MSScdL9BkSfcZqT6gYWByPoHXRhXMpsg3rFFtw4b738=", "id"=>"3", "exercise"=>{"dropdowns_attributes"=>{"0"=>{"id"=>"5", "dropdown_definitions_attributes"=>{"0"=>{"id"=>"4", "_destroy"=>"", "dropdown_options_attributes"=>{"0"=>{"option"=>"1", "id"=>"9", "_destroy"=>""}}, "definition"=>"1"}, "1"=>{"id"=>"5", "_destroy"=>"", "dropdown_options_attributes"=>{"0"=>{"option"=>"2", "id"=>"10", "_destroy"=>""}}, "definition"=>"2"}}, "_destroy"=>"1"}}, "chapter"=>"453453", "title"=>"54", "help_attributes"=>{"help_text"=>"", "id"=>"3"}, "question"=>"", "single_choices_attributes"=>{"0"=>{"single_choice_options_attributes"=>{"0"=>{"option"=>"1", "id"=>"1", "_destroy"=>"", "check"=>"0"}, "1"=>{"option"=>"2", "id"=>"2", "_destroy"=>"", "check"=>"1"}, "2"=>{"option"=>"3", "id"=>"3", "_destroy"=>"", "check"=>"0"}}, "id"=>"1", "_destroy"=>""}}, "multiple_choices_attributes"=>{"0"=>{"id"=>"3", "_destroy"=>"", "multiple_choice_options_attributes"=>{"0"=>{"option"=>"1", "id"=>"1", "_destroy"=>"", "check"=>"1"}, "1"=>{"option"=>"2", "id"=>"2", "_destroy"=>"", "check"=>"0"}, "2"=>{"option"=>"3", "id"=>"3", "_destroy"=>"", "check"=>"1"}}}}}}
+  [4;36;1mExercise Load (0.2ms)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 3) [0m
+  [4;35;1mDropdown Load (0.2ms)[0m   [0mSELECT * FROM "dropdowns" WHERE ("dropdowns"."id" IN ('5')) AND ("dropdowns".exercise_id = 3) [0m
+  [4;36;1mHelp Load (0.5ms)[0m   [0;1mSELECT * FROM "helps" WHERE ("helps".exercise_id = 3) LIMIT 1[0m
+  [4;35;1mSingleChoice Load (0.2ms)[0m   [0mSELECT * FROM "single_choices" WHERE ("single_choices"."id" IN ('1')) AND ("single_choices".exercise_id = 3) [0m
+  [4;36;1mSingleChoiceOption Load (0.3ms)[0m   [0;1mSELECT * FROM "single_choice_options" WHERE ("single_choice_options"."id" IN ('1','2','3')) AND ("single_choice_options".single_choice_id = 1) [0m
+  [4;35;1mMultipleChoice Load (0.2ms)[0m   [0mSELECT * FROM "multiple_choices" WHERE ("multiple_choices"."id" IN ('3')) AND ("multiple_choices".exercise_id = 3) [0m
+  [4;36;1mMultipleChoiceOption Load (0.3ms)[0m   [0;1mSELECT * FROM "multiple_choice_options" WHERE ("multiple_choice_options"."id" IN ('1','2','3')) AND ("multiple_choice_options".multiple_choice_id = 3) [0m
+  [4;35;1mDropdown Destroy (0.3ms)[0m   [0mDELETE FROM "dropdowns" WHERE "id" = 5[0m
+  [4;36;1mDropdown Load (0.1ms)[0m   [0;1mSELECT * FROM "dropdowns" WHERE ("dropdowns".exercise_id = 3) [0m
+Redirected to http://localhost:3000/exercises/3
+Completed in 46ms (DB: 2) | 302 Found [http://localhost/exercises/3]
+
+
+Processing ExercisesController#show (for 127.0.0.1 at 2010-08-06 12:27:40) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mExercise Load (0.2ms)[0m   [0mSELECT * FROM "exercises" WHERE ("exercises"."id" = 3) [0m
+Rendering template within layouts/application
+Rendering exercises/show
+Completed in 14ms (View: 6, DB: 0) | 200 OK [http://localhost/exercises/3]
+
+
+Processing ExercisesController#edit (for 127.0.0.1 at 2010-08-06 12:27:41) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mExercise Load (0.2ms)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 3) [0m
+Rendering template within layouts/application
+Rendering exercises/edit
+  [4;35;1mHelp Load (0.3ms)[0m   [0mSELECT * FROM "helps" WHERE ("helps".exercise_id = 3) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "multiple_choices" WHERE ("multiple_choices".exercise_id = 3) [0m
+  [4;35;1mMultipleChoice Load (0.1ms)[0m   [0mSELECT * FROM "multiple_choices" WHERE ("multiple_choices".exercise_id = 3) [0m
+  [4;36;1mMultipleChoiceOption Load (0.3ms)[0m   [0;1mSELECT * FROM "multiple_choice_options" WHERE ("multiple_choice_options".multiple_choice_id = 3) [0m
+Rendered exercises/_multiple_choice_option_fields (4.0ms)
+Rendered exercises/_multiple_choice_option_fields (2.4ms)
+Rendered exercises/_multiple_choice_option_fields (2.3ms)
+Rendered exercises/_multiple_choice_option_fields (2.4ms)
+Rendered exercises/_multiple_choice_block (24.4ms)
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "single_choices" WHERE ("single_choices".exercise_id = 3) [0m
+  [4;36;1mSingleChoice Load (0.1ms)[0m   [0;1mSELECT * FROM "single_choices" WHERE ("single_choices".exercise_id = 3) [0m
+  [4;35;1mSingleChoiceOption Load (0.3ms)[0m   [0mSELECT * FROM "single_choice_options" WHERE ("single_choice_options".single_choice_id = 1) [0m
+Rendered exercises/_single_choice_option_fields (4.1ms)
+Rendered exercises/_single_choice_option_fields (2.2ms)
+Rendered exercises/_single_choice_option_fields (2.2ms)
+Rendered exercises/_single_choice_option_fields (2.2ms)
+Rendered exercises/_single_choice_block (23.6ms)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "marktexts" WHERE ("marktexts".exercise_id = 3) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "clozes" WHERE ("clozes".exercise_id = 3) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "dropdowns" WHERE ("dropdowns".exercise_id = 3) [0m
+Rendered exercises/_multiple_choice_option_fields (3.3ms)
+Rendered exercises/_multiple_choice_block (73.9ms)
+Rendered exercises/_single_choice_option_fields (3.0ms)
+Rendered exercises/_single_choice_block (8.9ms)
+Rendered exercises/_marktext_fields (0.5ms)
+Rendered exercises/_marktext_block (2.4ms)
+Rendered exercises/_cloze_fields (0.6ms)
+Rendered exercises/_cloze_block (2.4ms)
+Rendered exercises/_dropdown_option_fields (3.4ms)
+Rendered exercises/_dropdown_definition_fields (12.3ms)
+Rendered exercises/_dropdown_block (24.6ms)
+Rendered exercises/_form (229.6ms)
+Completed in 243ms (View: 230, DB: 2) | 200 OK [http://localhost/exercises/3/edit]
