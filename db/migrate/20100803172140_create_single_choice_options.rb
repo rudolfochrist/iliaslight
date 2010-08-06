@@ -1,7 +1,7 @@
 class CreateSingleChoiceOptions < ActiveRecord::Migration
   def self.up
     create_table :single_choice_options do |t|
-      t.integer :exercise_id
+      t.integer :single_choice_id
       t.boolean :check
       t.string :option
 

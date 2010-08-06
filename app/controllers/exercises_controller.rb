@@ -9,15 +9,6 @@ class ExercisesController < ApplicationController
   
   def new
     @exercise = Exercise.new
-    5.times { @exercise.sequence_lines.build }
-    4.times { @exercise.multiple_choice_options.build }
-    4.times { @exercise.single_choice_options.build }
-    @exercise.marktexts.build
-    @exercise.clozes.build
-    3.times do
-      dropdown = @exercise.dropdowns.build
-      4.times { dropdown.dropdown_options.build }
-    end
     @exercise.build_help
   end
   

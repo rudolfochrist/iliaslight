@@ -13,54 +13,6 @@
   <%=h @exercise.question %>
 </p>
 
-<% unless @exercise.multiple_choice_options.empty? %>
-	<p><strong>Multiple Choice</strong></p>
-	<ul>
-	<% for option in @exercise.multiple_choice_options %>
-		<li><%=h option.option %></li>
-	<% end %>
-	</ul>
-<% end %>
-
-<% unless @exercise.single_choice_options.empty? %>
-	<p><strong>Single Choice</strong></p>
-	<ul>
-		<% for option in @exercise.single_choice_options %>
-			<li><%= h option.option %></li>
-		<% end %>
-	</ul>
-<% end %>
-
-<% unless @exercise.marktexts.empty? %>
-	<p><strong>Marktext</strong></p>
-	<% for marktext in @exercise.marktexts %>
-		<p><%= h marktext.mark %></p>
-	<% end %>
-<% end %>
-
-<% unless @exercise.clozes.empty? %>
-	<p><strong>Cloze</strong></p>
-	<% for cloze in @exercise.clozes %>
-		<p><%= h cloze.cloze_text %></p>
-	<% end %>
-<% end %>
- 
-<% unless @exercise.dropdowns.empty? %>
-	<p><strong>Dropdown</strong></p>
-	<ol>
-		<% for dropdown in @exercise.dropdowns %>
-		<li><%= h dropdown.definition %></li>
-		<% unless dropdown.dropdown_options.empty? %>
-		<ol>
-			<% for dropdown_option in dropdown.dropdown_options %>
-			<li><%= h dropdown_option.option %></li>
-			<% end %>
-		</ol>
-		<% end %>
-		<% end %>
-	</ol>
-<% end %>
-
 <p>
   <%= link_to "Edit", edit_exercise_path(@exercise) %> |
   <%= link_to "Destroy", @exercise, :confirm => 'Are you sure?', :method => :delete %> |

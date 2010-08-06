@@ -1,0 +1,10 @@
+<div class="fields">
+	<p>
+		<strong>Multiple Choice</strong>
+		<%= link_to_remove_fields "remove", f %>
+	</p>
+	<p><%= link_to_add_fields "Add choice", f, :multiple_choice_options %></p>
+	<% f.fields_for :multiple_choice_options do |mco_builder| %>
+		<%= render 'multiple_choice_option_fields', :f => mco_builder %>
+	<% end %>
+</div>

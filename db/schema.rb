@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100805095428) do
+ActiveRecord::Schema.define(:version => 20100806093502) do
 
   create_table "clozes", :force => true do |t|
     t.integer  "exercise_id"
@@ -18,8 +18,15 @@ ActiveRecord::Schema.define(:version => 20100805095428) do
     t.datetime "updated_at"
   end
 
-  create_table "dropdown_options", :force => true do |t|
+  create_table "dropdown_definitions", :force => true do |t|
     t.integer  "dropdown_id"
+    t.string   "definition"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dropdown_options", :force => true do |t|
+    t.integer  "dropdown_definition_id"
     t.string   "option"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20100805095428) do
 
   create_table "dropdowns", :force => true do |t|
     t.integer  "exercise_id"
-    t.string   "definition"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,24 +61,29 @@ ActiveRecord::Schema.define(:version => 20100805095428) do
   end
 
   create_table "multiple_choice_options", :force => true do |t|
-    t.integer  "exercise_id"
+    t.integer  "multiple_choice_id"
     t.boolean  "check"
     t.string   "option"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "sequence_lines", :force => true do |t|
+  create_table "multiple_choices", :force => true do |t|
     t.integer  "exercise_id"
-    t.string   "question_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "single_choice_options", :force => true do |t|
-    t.integer  "exercise_id"
+    t.integer  "single_choice_id"
     t.boolean  "check"
     t.string   "option"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "single_choices", :force => true do |t|
+    t.integer  "exercise_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
