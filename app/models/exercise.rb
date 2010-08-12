@@ -2,8 +2,7 @@ class Exercise < ActiveRecord::Base
   validates_presence_of :title, :message => "can't be blank"
   validates_presence_of :chapter, :message => "can't be blank"
   
-  has_many :sequence_types
-  accepts_nested_attributes_for :sequence_types, :allow_destroy => true
+  has_many :order_entries, :dependent => :destroy
   
   has_many :multiple_choices, :dependent => :destroy
   accepts_nested_attributes_for :multiple_choices, :allow_destroy => true

@@ -2,10 +2,10 @@
 
 one:
   exercise_id: 1
-  type: MyString
-  type_id: 
+  question_type: MyString
+  id_of_type: 1
 
 two:
   exercise_id: 1
-  type: MyString
-  type_id: 
+  question_type: MyString
+  id_of_type: 1

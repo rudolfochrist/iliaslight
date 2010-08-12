@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100806093502) do
+ActiveRecord::Schema.define(:version => 20100806120404) do
 
   create_table "clozes", :force => true do |t|
     t.integer  "exercise_id"
@@ -70,6 +70,14 @@ ActiveRecord::Schema.define(:version => 20100806093502) do
 
   create_table "multiple_choices", :force => true do |t|
     t.integer  "exercise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "order_entries", :force => true do |t|
+    t.integer  "exercise_id"
+    t.string   "question_type"
+    t.integer  "id_of_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
