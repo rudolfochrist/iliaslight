@@ -4,6 +4,7 @@ class CreateExercises < ActiveRecord::Migration
       t.string :title
       t.string :chapter
       t.text :question
+      t.text :help
       t.timestamps
     end
   end

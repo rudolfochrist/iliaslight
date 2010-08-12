@@ -42,13 +42,7 @@ ActiveRecord::Schema.define(:version => 20100812105240) do
     t.string   "title"
     t.string   "chapter"
     t.text     "question"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "helps", :force => true do |t|
-    t.integer  "exercise_id"
-    t.text     "help_text"
+    t.text     "help"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

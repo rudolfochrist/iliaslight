@@ -21,9 +21,6 @@ class Exercise < ActiveRecord::Base
   
   has_many :dropdowns, :dependent => :destroy
   accepts_nested_attributes_for :dropdowns, :allow_destroy => true
-    
-  has_one :help
-  accepts_nested_attributes_for :help, :allow_destroy => true
   
   def export_to_html
     template = ERB.new(File.new("public/exercise_template.erb").read, nil, "%")

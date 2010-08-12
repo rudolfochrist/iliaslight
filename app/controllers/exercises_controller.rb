@@ -11,7 +11,6 @@ class ExercisesController < ApplicationController
   
   def new
     @exercise = Exercise.new
-    @exercise.build_help
   end
   
   def create
