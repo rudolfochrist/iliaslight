@@ -24,4 +24,15 @@ class Exercise < ActiveRecord::Base
     
   has_one :help
   accepts_nested_attributes_for :help, :allow_destroy => true
+  
+  def export_to_html
+    template = ERB.new(File.new("public/exercise_template.erb").read, nil, "%")
+    chapter = self.chapter.split(".").join("_")
+    mcs = multiple_choices
+    result = template.result(binding)
+    
+    File.open("public/html/#{chapter}.html", "w+") do |f|
+      f.write(result)
+    end
+  end
 end
