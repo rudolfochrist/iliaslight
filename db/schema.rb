@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100806120404) do
+ActiveRecord::Schema.define(:version => 20100812105240) do
 
   create_table "clozes", :force => true do |t|
     t.integer  "exercise_id"
@@ -74,14 +74,6 @@ ActiveRecord::Schema.define(:version => 20100806120404) do
     t.datetime "updated_at"
   end
 
-  create_table "order_entries", :force => true do |t|
-    t.integer  "exercise_id"
-    t.string   "question_type"
-    t.integer  "id_of_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "single_choice_options", :force => true do |t|
     t.integer  "single_choice_id"
     t.boolean  "check"
@@ -92,6 +84,13 @@ ActiveRecord::Schema.define(:version => 20100806120404) do
 
   create_table "single_choices", :force => true do |t|
     t.integer  "exercise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "type_sequence_positions", :force => true do |t|
+    t.integer  "exercise_id"
+    t.string   "type_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
