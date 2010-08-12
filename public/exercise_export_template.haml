@@ -1,0 +1,46 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+	%head
+		%title= title
+		%link{:rel => "stylesheet", :href => "file:///android_asset/support/master.css"}/
+		%link{:rel => "stylesheet", :href => "../support/master.css"}/
+		%script{:src => "file:///android_asset/support/logic.js", :type => "text/javascript"}/
+		%script{:src => "../support/logic.js", :type => "text/javascript"}/
+		:javascript
+			window.onload = function() {
+				var help_btn = $("help_btn");
+				help_btn.onclick = function() {
+					var help_text = $("help_text");
+					if (help_text.style.visibility === "hidden" ||
+						!help_text.style.visibility) {
+							help_text.style.visibility = "visible";
+					}
+					else {
+						help_text.style.visibility = "hidden";
+					};
+				};
+
+				var done_btn = $("done_btn");
+				done_btn.onclick = function() {
+					var correctGapquestion = checkGapQuestion();
+				};
+			};
+	%body
+		#question_text
+			%p
+				%strong= question
+		%hr/
+		
+		%hr/
+		#footer
+			%a{:href => "#"}
+				%img{:src => "file:///android_asset/support/arrow_left_play.png", :alt => "Zurück", :id => "back_btn"}/
+			%input{:type => "button", :id => "done_btn", :name => "done_btn", :value => "Fertig"}
+			- unless help.blank?
+				%input{:type => "button", :name => "help_btn", :id => "help_btn", :value => "Hilfe"}
+			%a{:href => "#"}
+				%img{:src => "file:///android_assets/support/arrow_right_play.png", :alt => "Weiter", :id => "next_btn"}
+		- unless help.blank?
+			#help_text{:class => "hidden"}
+				= help

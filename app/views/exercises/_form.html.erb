@@ -15,9 +15,7 @@
 
 	<p><strong>Help</strong></p>
 	<p>TODO: insert allow markup guide</p>
-	<% f.fields_for :help do |help_builder| %>
-		<%= help_builder.text_area :help_text %>
-	<% end %>
+	<%= f.text_area :help %>
 	
 	<hr />
 	

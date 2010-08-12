@@ -23,13 +23,15 @@ class Exercise < ActiveRecord::Base
   accepts_nested_attributes_for :dropdowns, :allow_destroy => true
   
   def export_to_html
-    template = ERB.new(File.new("public/exercise_template.erb").read, nil, "%")
-    chapter = self.chapter.split(".").join("_")
-    mcs = multiple_choices
-    result = template.result(binding)
-    
-    File.open("public/html/#{chapter}.html", "w+") do |f|
-      f.write(result)
+    template = File.read("public/exercise_export_template.haml")
+    haml_engine = Haml::Engine.new(template)
+    output = haml_engine.render(scope=self)
+    File.open("public/html/#{chapter.split(".").join("_")}.html", "w") do |f|
+      f.write(output)
     end
+  end
+  
+  def destroy_export
+    File.delete("public/html/#{chapter.split(".").join("_")}.html")
   end
 end

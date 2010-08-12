@@ -41,6 +41,7 @@ class ExercisesController < ApplicationController
   
   def destroy
     @exercise = Exercise.find(params[:id])
+    @exercise.destroy_export
     @exercise.destroy
     flash[:notice] = "Successfully destroyed exercise."
     redirect_to exercises_url
