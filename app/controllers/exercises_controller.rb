@@ -1,4 +1,6 @@
 class ExercisesController < ApplicationController
+  
+  
   def index
     @exercises = Exercise.all
   end
@@ -16,6 +18,7 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.new(params[:exercise])
     if @exercise.save
       flash[:notice] = "Successfully created exercise."
+      @exercise.export_to_html
       redirect_to @exercise
     else
       render :action => 'new'
@@ -29,6 +32,7 @@ class ExercisesController < ApplicationController
   def update
     @exercise = Exercise.find(params[:id])
     if @exercise.update_attributes(params[:exercise])
+      @exercise.export_to_html
       flash[:notice] = "Successfully updated exercise."
       redirect_to @exercise
     else
