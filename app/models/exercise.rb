@@ -23,6 +23,33 @@ class Exercise < ActiveRecord::Base
   accepts_nested_attributes_for :dropdowns, :allow_destroy => true
   
   def export_to_html
+    mcs = multiple_choices.reverse
+    scs = single_choices.reverse
+    marks = marktexts.reverse
+    cloz = clozes.reverse
+    drops = dropdowns.reverse
+    order = type_sequence_positions
+    @export_type_order = Array.new
+    order.each do |type|
+      case type.type_name
+      when "multiple_choices"
+        obj = mcs.pop
+        @export_type_order << obj unless obj.nil?
+      when "single_choices"
+        obj = scs.pop
+        @export_type_order << obj unless obj.nil?
+      when "marktexts"
+        obj = marks.pop
+        @export_type_order << obj unless obj.nil?
+      when "clozes"
+        obj = cloz.pop
+        @export_type_order << obj unless obj.nil?
+      when "dropdowns"
+        obj = drops.pop
+        @export_type_order << obj unless obj.nil?
+      end
+    end
+    
     template = File.read("public/exercise_export_template.haml")
     haml_engine = Haml::Engine.new(template)
     output = haml_engine.render(scope=self)
@@ -32,6 +59,10 @@ class Exercise < ActiveRecord::Base
   end
   
   def destroy_export
-    File.delete("public/html/#{chapter.split(".").join("_")}.html")
+    begin
+      File.delete("public/html/#{chapter.split(".").join("_")}.html")
+    rescue
+      p "file already deleted"
+    end
   end
 end
