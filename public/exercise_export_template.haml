@@ -79,6 +79,18 @@
 								- else
 									%span= word
 				%hr/
+			- if type.class == Cloze
+				#gapquestion
+					- type.cloze_text.split.each_with_index do |word, i|
+						- if word.start_with? "#"
+							%input{:type => "text", :name => "gap" + i.to_s}
+						- else
+							= word
+				#gapquestion_sol.hidden
+					- type.cloze_text.split.each_with_index do |word, i|
+						- if word.start_with? "#"
+							%span{:id => "gap#{i}"}= word.delete "#"
+				%hr/
 
 		#footer
 			%a{:href => "#"}
