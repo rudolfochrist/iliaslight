@@ -22,7 +22,6 @@
 	<hr />
 	
 	<% unless @type_order.nil? %>
-		<%= @type_order.count %>
 		<% @type_order.each do |type| %>
 			
 			<% if type.class == MultipleChoice %>
