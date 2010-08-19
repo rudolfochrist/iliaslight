@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20100812105240) do
 
   create_table "dropdown_options", :force => true do |t|
     t.integer  "dropdown_definition_id"
+    t.boolean  "check"
     t.string   "option"
     t.datetime "created_at"
     t.datetime "updated_at"
