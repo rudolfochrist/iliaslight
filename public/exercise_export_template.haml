@@ -49,6 +49,17 @@
 					if ($("dropdown")) {
 						drops_solved = checkDropdown();
 					};
+					
+					if ($("single_choice")) {
+						sc_solved = checkSingleChoice();
+					};
+					
+					if (mc_solved && sc_solved && mark_solved && cloze_solved && drops_solved) {
+						alert("Solved everything correct");
+					}
+					else {
+						alert("Sorry. You've made some mistakes!");
+					};
 				};
 			};
 			
