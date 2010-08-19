@@ -46,7 +46,7 @@
 						cloze_solved = checkGapQuestion();
 					};	
 					
-					if ($(dropdown)) {
+					if ($("dropdown")) {
 						drops_solved = checkDropdown();
 					};
 				};
@@ -91,6 +91,17 @@
 						- if word.start_with? "#"
 							%span{:id => "gap#{i}"}= word.delete "#"
 				%hr/
+			- if type.class == Dropdown
+				#dropdown
+					- type.dropdown_definitions.each do |defi|
+						%p
+							= defi.definition
+							%select 
+								- defi.dropdown_options.each do |option|
+									- if option.check
+										%option.correct_option{:value => option.option}= option.option
+									- else
+										%option{:value => option.option}= option.option
 
 		#footer
 			%a{:href => "#"}
