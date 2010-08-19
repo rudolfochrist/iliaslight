@@ -21,33 +21,40 @@
 	
 	<hr />
 	
-	<% unless @exercise.multiple_choices.empty? %>
-		<% f.fields_for :multiple_choices do |mc_builder| %>
-			<%= render "multiple_choice_block", :f => mc_builder %>
-		<% end %>
-	<% end %>
-	
-	<% unless @exercise.single_choices.empty? %>
-		<% f.fields_for :single_choices do |sc_builder| %>
-			<%= render "single_choice_block", :f => sc_builder %>
-		<% end %>
-	<% end %>
-	
-	<% unless @exercise.marktexts.empty? %>
-		<% f.fields_for :marktexts do |mt_builder| %>
-			<%= render "marktext_block", :f => mt_builder %>
-		<% end %>
-	<% end %>
-	
-	<% unless @exercise.clozes.empty? %>
-		<% f.fields_for :clozes do |c_builder| %>
-			<%= render "cloze_block", :f => c_builder %>
-		<% end %>
-	<% end %>
-	
-	<% unless @exercise.dropdowns.empty? %>
-		<% f.fields_for :dropdowns do |dd_builder| %>
-			<%= render 'dropdown_block', :f => dd_builder %>
+	<% unless @type_order.nil? %>
+		<%= @type_order.count %>
+		<% @type_order.each do |type| %>
+			
+			<% if type.class == MultipleChoice %>
+				<% f.fields_for :multiple_choices, type do |mc_builder| %>
+					<%= render "multiple_choice_block", :f => mc_builder %>
+				<% end %>
+			<% end %>
+			
+			<% if type.class == SingleChoice %>
+				<% f.fields_for :single_choices, type do |sc_builder| %>
+					<%= render "single_choice_block", :f => sc_builder %>
+				<% end %>
+			<% end %>
+			
+			<% if type.class == Marktext %>
+				<% f.fields_for :marktexts, type do |mt_builder| %>
+					<%= render "marktext_block", :f => mt_builder %>
+				<% end %>
+			<% end %>
+			
+			<% if type.class == Cloze %>
+				<% f.fields_for :clozes, type do |c_builder| %>
+					<%= render "cloze_block", :f => c_builder %>
+				<% end %>
+			<% end %>
+			
+			<% if type.class == Dropdown %>
+				<% f.fields_for :dropdowns, type do |dd_builder| %>
+					<%= render "dropdown_block", :f => dd_builder %>
+				<% end %>
+			<% end %>
+			
 		<% end %>
 	<% end %>
 	
