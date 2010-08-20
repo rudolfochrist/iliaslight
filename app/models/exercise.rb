@@ -1,5 +1,4 @@
 class Exercise < ActiveRecord::Base
-  validates_presence_of :title, :message => "can't be blank"
   validates_presence_of :chapter, :message => "can't be blank"
   
   has_many :type_sequence_positions
