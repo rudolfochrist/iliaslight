@@ -9,6 +9,19 @@ function $ (elem) {
 	return document.getElementById(elem);
 }
 
+function getElementsByClassName (className) {
+	var result = [];
+	var allElements = document.getElementsByTagName("*");
+	
+	for (var i = 0; i < allElements.length; i++) {
+		if (allElements[i].className == className) {
+			result.push(allElements[i]);
+		};
+	};
+	
+	return result;
+}
+
 
 var checkMultipleChoice = function() {
     var mcRightSolutions = $("multiple_choice_sol").getElementsByTagName("span");
