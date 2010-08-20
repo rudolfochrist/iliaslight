@@ -12,3 +12,7 @@ public/html/*
 *.DS_Store
 *.swp
 *.out
+
+public/support/arrow_left_play.png
+
+public/support/arrow_right_play.png
