@@ -34,8 +34,8 @@
 					var cloze_solved = true;
 					var drops_solved = true;
 					
-					if ($("multiple_choice")) {
-						mc_solved = checkMultipleChoice();
+					if (getElementsByClassName("multiple_choice").length > 0) {
+						mc_solved = checkMultipleChoices();
 					};
 					
 					if ($("marktext")) {
@@ -70,13 +70,13 @@
 		%hr/
 		- @export_type_order.each do |type|
 			- if type.class == MultipleChoice
-				#multiple_choice
-					- for option in type.multiple_choice_options
+				%div{:class => "multiple_choice", :id => "mc#{type.id}"}
+					- type.multiple_choice_options.each do |option|
 						%p
 							%input{:type => "checkbox", :name => ("option" + option.id.to_s)}
 							= option.option
-				#multiple_choice_sol.hidden
-					- for option in type.multiple_choice_options
+				%div{:class => "hidden", :id => "mc#{type.id}_sol"}
+					- type.multiple_choice_options.each do |option|
 						- if option.check
 							%span= "option" + option.id.to_s
 				%hr/
