@@ -4,7 +4,7 @@ config/database.yml
 log/*
 tmp/*
 public/html/*
-public/support/*
+
 
 ## generic files to ignore
 *~
