@@ -23,9 +23,9 @@ function getElementsByClassName (className) {
 }
 
 
-var checkMultipleChoice = function() {
-    var mcRightSolutions = $("multiple_choice_sol").getElementsByTagName("span");
-    var mcAnswers = $("multiple_choice").getElementsByTagName("input");
+var checkMultipleChoice = function(type_id, solution_id) {
+    var mcRightSolutions = $(solution_id).getElementsByTagName("span");
+    var mcAnswers = $(type_id).getElementsByTagName("input");
     var solvedCorrect = true;
 
     for (var i = 0; i < mcAnswers.length; i++) {
@@ -44,6 +44,24 @@ var checkMultipleChoice = function() {
     };
 
     return solvedCorrect;
+};
+
+var checkMultipleChoices = function() {
+	var multiple_choices = getElementsByClassName("multiple_choice");
+	var solvedCorrect = [];
+	for (var i = 0; i < multiple_choices.length; i++) {
+		var type_id = multiple_choices[i].id;
+		var solution_id = multiple_choices[i].id + "_sol";
+		solvedCorrect.push(checkMultipleChoice(type_id, solution_id));
+	};
+	
+	for (var i = 0; i < solvedCorrect.length; i++) {
+		if (!solvedCorrect[i]) {
+			return false;
+		};
+	};
+	
+	return true;
 };
 
 var checkForName = function(name, array) {
