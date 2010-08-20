@@ -22,8 +22,8 @@
 						};
 					};
 				}
-				if ($("marktext")) {
-					initMarktext();
+				if (getElementsByClassName("marktext").length > 0) {
+					initMarktexts();
 				};
 				
 				var done_btn = $("done_btn");
@@ -38,8 +38,8 @@
 						mc_solved = checkMultipleChoices();
 					};
 					
-					if ($("marktext")) {
-						mark_solved = checkMarktext();
+					if (getElementsByClassName("marktext").length > 0) {
+						mark_solved = checkMarktexts();
 					};
 					
 					if ($("gapquestion")) {
@@ -81,7 +81,7 @@
 							%span= "option" + option.id.to_s
 				%hr/
 			- if type.class == Marktext
-				#marktext
+				%div{:class => "marktext", :id => "marktext#{type.id}"}
 					%p
 						%em
 							- type.mark.split.each do |word|

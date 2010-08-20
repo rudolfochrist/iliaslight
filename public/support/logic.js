@@ -96,8 +96,8 @@ var checkSingleChoice = function() {
 	return solvedCorrect;
 };
 
-var initMarktext = function() {
-	var allSpans = $("marktext").getElementsByTagName("span");
+var initMarktext = function (marktext_id) {
+	var allSpans = $(marktext_id).getElementsByTagName("span");
 	for (var i=0; i < allSpans.length; i++) {
 		allSpans[i].onclick = function() {
 			if (this.style.backgroundColor === YELLOW) {
@@ -110,8 +110,15 @@ var initMarktext = function() {
 	};
 };
 
-var checkMarktext = function() {
-	var markTextSpans = $("marktext").getElementsByTagName("span");
+var initMarktexts = function () {
+	var marktexts = getElementsByClassName("marktext");
+	for (var i=0; i<marktexts.length; i++) {
+		initMarktext(marktexts[i].id)
+	};
+};
+
+var checkMarktext = function(marktext_id) {
+	var markTextSpans = $(marktext_id).getElementsByTagName("span");
 	var solvedCorrect = true;
 	
 	for (var i=0; i < markTextSpans.length; i++) {
@@ -132,6 +139,24 @@ var checkMarktext = function() {
 	};
 	
 	return solvedCorrect;
+};
+
+var checkMarktexts = function () {
+	var marktexts = getElementsByClassName("marktext");
+	var solvedCorrect = [];
+	
+	for (var i = 0; i < marktexts.length; i++) {
+		var checkResult = checkMarktext(marktexts[i].id);
+		solvedCorrect.push(checkResult);
+	};
+	
+	for (var i = 0; i < solvedCorrect.length; i++) {
+		if (!solvedCorrect[i]) {
+			return false;
+		};
+	};
+	
+	return true;
 };
 
 var checkGapQuestion = function() {
