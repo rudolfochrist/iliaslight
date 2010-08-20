@@ -159,14 +159,22 @@ var checkMarktexts = function () {
 	return true;
 };
 
-var checkGapQuestion = function() {
-	var gapInputs = $("gapquestion").getElementsByTagName("input");
-	var correctAnswers = $("gapquestion_sol").children;
+var getSolutionForGap = function (gap, answers) {
+	for (var i=0; i<answers.length; i++) {
+		if (gap.name == answers[i].id) {
+			return answers[i].innerHTML;
+		};
+	};
+};
+
+var checkGapQuestion = function (type_id, solution_id) {
+	var gapInputs = $(type_id).getElementsByTagName("input");
+	var correctAnswers = $(solution_id).children;
 	var solvedCorrect = true;
 	
 	for (var i=0; i < gapInputs.length; i++) {
 		var gap = gapInputs[i];
-		var solutonForGap = $(gap.name).innerHTML;
+		var solutonForGap = getSolutionForGap(gap, correctAnswers)
 		
 		if (gap.value == solutonForGap) {
 			gap.style.backgroundColor = GREEN;
@@ -179,6 +187,25 @@ var checkGapQuestion = function() {
 	};
 	
 	return solvedCorrect;
+};
+
+var checkGapQuestions = function () {
+	var clozes = getElementsByClassName("gapquestion");
+	var solvedCorrect = [];
+	
+	for (var i=0; i<clozes.length; i++) {
+		var type_id = clozes[i].id;
+		var solution_id = clozes[i].id + "_sol";
+		solvedCorrect.push(checkGapQuestion(type_id, solution_id));
+	};
+	
+	for (var i=0; i<solvedCorrect.length; i++) {
+		if (!solvedCorrect[i]) {
+			return false;
+		};
+	};
+	
+	return true;
 };
 
 var checkDropdown = function() {

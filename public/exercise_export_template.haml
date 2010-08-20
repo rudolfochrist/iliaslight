@@ -42,8 +42,8 @@
 						mark_solved = checkMarktexts();
 					};
 					
-					if ($("gapquestion")) {
-						cloze_solved = checkGapQuestion();
+					if (getElementsByClassName("gapquestion").length > 0) {
+						cloze_solved = checkGapQuestions();
 					};	
 					
 					if ($("dropdown")) {
@@ -91,13 +91,13 @@
 									%span= word
 				%hr/
 			- if type.class == Cloze
-				#gapquestion
+				%div{:class => "gapquestion", :id => "cloze#{type.id}"}
 					- type.cloze_text.split.each_with_index do |word, i|
 						- if word.start_with? "#"
 							%input{:type => "text", :name => "gap" + i.to_s}
 						- else
 							= word
-				#gapquestion_sol.hidden
+				%div{:id => "cloze#{type.id}_sol", :class => "hidden"}
 					- type.cloze_text.split.each_with_index do |word, i|
 						- if word.start_with? "#"
 							%span{:id => "gap#{i}"}= word.delete "#"
