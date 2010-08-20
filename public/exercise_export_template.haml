@@ -46,8 +46,8 @@
 						cloze_solved = checkGapQuestions();
 					};	
 					
-					if ($("dropdown")) {
-						drops_solved = checkDropdown();
+					if (getElementsByClassName("dropdown").length > 0) {
+						drops_solved = checkDropdowns();
 					};
 					
 					if (getElementsByClassName("single_choice").length > 0) {
@@ -103,7 +103,7 @@
 							%span{:id => "gap#{i}"}= word.delete "#"
 				%hr/
 			- if type.class == Dropdown
-				#dropdown
+				%div{:id => "drop#{type.id}", :class => "dropdown"}
 					- type.dropdown_definitions.each do |defi|
 						%p
 							= defi.definition

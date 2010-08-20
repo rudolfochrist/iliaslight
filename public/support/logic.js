@@ -105,6 +105,14 @@ var checkSingleChoices = function () {
 		var solution_id = singleChoices[i].id + "_sol";
 		solvedCorrect.push(checkSingleChoice(type_id, solution_id));
 	};
+	
+	for (var i=0; i<solvedCorrect.length; i++) {
+		if (!solvedCorrect[i]) {
+			return false;
+		};
+	};
+	
+	return true;
 };
 
 var initMarktext = function (marktext_id) {
@@ -219,8 +227,8 @@ var checkGapQuestions = function () {
 	return true;
 };
 
-var checkDropdown = function() {
-	var selects = $("dropdown").getElementsByTagName("select");
+var checkDropdown = function (type_id) {
+	var selects = $(type_id).getElementsByTagName("select");
 	var solvedCorrect = true;
 	
 	for (var i=0; i < selects.length; i++) {
@@ -239,6 +247,24 @@ var checkDropdown = function() {
 	};
 	
 	return solvedCorrect;
+};
+
+var checkDropdowns = function () {
+	var dropdowns = getElementsByClassName("dropdown");
+	var solvedCorrect = [];
+	
+	for (var i=0; i<dropdowns.length; i++) {
+		var solved = checkDropdown(dropdowns[i].id);
+		solvedCorrect.push(solved);
+	};
+	
+	for (var i=0; i<solvedCorrect.length; i++) {
+		if (!solvedCorrect[i]) {
+			return false;
+		};
+	};
+	
+	return true;
 };
 
 var findRightOptionIndex = function(options) {
