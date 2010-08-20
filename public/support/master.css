@@ -1,0 +1,31 @@
+.hidden {
+	visibility: hidden;
+}
+
+#marktext {
+	line-height: 210%;
+}
+
+#marktext span {
+	margin-right: 0.5%;
+}
+
+table {
+	border-spacing:	15px 5px;
+}
+
+#multiple_choice, #single_choice {
+	width: 35%;
+}
+
+#footer {
+	text-align: center;
+}
+
+#back_btn {
+	float: left;
+}
+
+#next_btn {
+	float: right;
+}
