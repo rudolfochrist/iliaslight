@@ -50,8 +50,8 @@
 						drops_solved = checkDropdown();
 					};
 					
-					if ($("single_choice")) {
-						sc_solved = checkSingleChoice();
+					if (getElementsByClassName("single_choice").length > 0) {
+						sc_solved = checkSingleChoices();
 					};
 					
 					if (mc_solved && sc_solved && mark_solved && cloze_solved && drops_solved) {
@@ -115,12 +115,12 @@
 										%option{:value => option.option}= option.option
 				%hr/
 			- if type.class == SingleChoice
-				#single_choice
+				%div{:class => "single_choice", :id => "sc#{type.id}"}
 					- type.single_choice_options.each do |option|
 						%p
-							%input{:type => "radio", :name => "option", :id => "sc_option#{option.id}"}
+							%input{:type => "radio", :name => "option#{type.id}", :id => "sc_option#{option.id}"}
 							= option.option
-				#single_choice_sol.hidden
+				%div{:id => "sc#{type.id}_sol", :class => "hidden"}
 					- type.single_choice_options.each do |option|
 						- if option.check
 							%span= "sc_option#{option.id}"

@@ -73,9 +73,9 @@ var checkForName = function(name, array) {
     return false;
 };
 
-var checkSingleChoice = function() {
-	var scRightSolutins = $("single_choice_sol").getElementsByTagName("span");
-	var scAnswers = $("single_choice").getElementsByTagName("input");
+var checkSingleChoice = function (type_id, solution_id) {
+	var scRightSolutins = $(solution_id).getElementsByTagName("span");
+	var scAnswers = $(type_id).getElementsByTagName("input");
 	var solvedCorrect = true;
 	
 	for (var i=0; i<scAnswers.length; i++) {
@@ -94,6 +94,17 @@ var checkSingleChoice = function() {
 		};
 	};
 	return solvedCorrect;
+};
+
+var checkSingleChoices = function () {
+	var singleChoices = getElementsByClassName("single_choice");
+	var solvedCorrect = [];
+	
+	for (var i=0; i<singleChoices.length; i++) {
+		var type_id = singleChoices[i].id;
+		var solution_id = singleChoices[i].id + "_sol";
+		solvedCorrect.push(checkSingleChoice(type_id, solution_id));
+	};
 };
 
 var initMarktext = function (marktext_id) {
