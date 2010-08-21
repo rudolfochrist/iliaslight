@@ -16,5 +16,6 @@ function validateForm(submitBtn) {
 	};
 	
 	alert("Chapter cannot be blank!");
+	chapter.style.backgroundColor = "lightcoral";
 	return false;
 }
