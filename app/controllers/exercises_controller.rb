@@ -38,7 +38,6 @@ class ExercisesController < ApplicationController
       flash[:notice] = "Successfully updated exercise."
       redirect_to @exercise
     else
-      @type_order = set_type_order
       render :action => 'edit'
     end
   end
