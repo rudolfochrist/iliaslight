@@ -1,6 +1,7 @@
 class Exercise < ActiveRecord::Base
   validates_presence_of :chapter, :message => "can't be blank"
-  
+  validates_uniqueness_of :chapter, :message => "must be unique"
+    
   has_many :type_sequence_positions
   accepts_nested_attributes_for :type_sequence_positions, :allow_destroy => true
   
