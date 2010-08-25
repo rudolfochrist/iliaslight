@@ -55,10 +55,10 @@
 					};
 					
 					if (mc_solved && sc_solved && mark_solved && cloze_solved && drops_solved) {
-						//db access
+						window.abp.saveToDb(true);
 					}
 					else {
-						//db access
+						window.abp.saveToDb(false);
 					};
 				};
 			};
