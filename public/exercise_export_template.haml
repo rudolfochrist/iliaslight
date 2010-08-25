@@ -127,12 +127,12 @@
 				%hr/
 
 		#footer
-			%a{:href => "#"}
+			%a{:href => "?prev"}
 				%img{:src => "file:///android_asset/support/arrow_left_play.png", :alt => "Zurück", :id => "back_btn"}/
 			%input{:type => "button", :id => "done_btn", :name => "done_btn", :value => "Fertig"}
 			- unless help.blank?
 				%input{:type => "button", :name => "help_btn", :id => "help_btn", :value => "Hilfe"}
-			%a{:href => "#"}
+			%a{:href => "?next"}
 				%img{:src => "file:///android_assets/support/arrow_right_play.png", :alt => "Weiter", :id => "next_btn"}
 		- unless help.blank?
 			#help_text.hidden
