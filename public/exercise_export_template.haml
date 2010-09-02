@@ -84,7 +84,7 @@
 				%div{:class => "marktext", :id => "marktext#{type.id}"}
 					%p
 						%em
-							- type.mark.split.each do |word|
+							- type.mark.gsub("\n", "<br/>").split.each do |word|
 								- if word.start_with? "#"
 									%span.mark= word.delete "#"
 								- else
