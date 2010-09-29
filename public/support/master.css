@@ -2,11 +2,11 @@
 	visibility: hidden;
 }
 
-#marktext {
+.marktext {
 	line-height: 210%;
 }
 
-#marktext span {
+.marktext span {
 	margin-right: 0.5%;
 }
 
@@ -14,7 +14,7 @@ table {
 	border-spacing:	15px 5px;
 }
 
-#multiple_choice, #single_choice {
+.multiple_choice, .single_choice {
 	width: 35%;
 }
 
