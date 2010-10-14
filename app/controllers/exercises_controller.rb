@@ -16,6 +16,8 @@ class ExercisesController < ApplicationController
   
   def create
     @exercise = Exercise.new(params[:exercise])
+	time = Time.now.to_i.to_s
+	@exercise.chapter = @exercise.chapter + ("#") + time
     if @exercise.save
       flash[:notice] = "Successfully created exercise."
       @exercise.export_to_html

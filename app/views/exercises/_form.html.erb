@@ -6,11 +6,7 @@
   </p>
   <p>
     <%= f.label :chapter %><br />
-		<% if @exercise.chapter.blank? %>
-	    <%= f.text_field :chapter %>
-		<% else %>
-			<%= f.text_field :chapter, :disabled => "true" %>
-		<% end %>
+	<%= f.text_field :chapter %>
   </p>
   <p>
     <%= f.label :question %><br />
