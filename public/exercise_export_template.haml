@@ -103,7 +103,7 @@
         %div{:class => "gapquestion", :id => "cloze#{type.id}"}
           - type.cloze_text.split.each_with_index do |word, i|
             - if word.start_with? "#"
-              %input{:type => "text", :name => "gap" + i.to_s}
+              %input{:type => "text", :size => word.length.to_s, :name => "gap" + i.to_s}
             - else
               = word
         %div{:id => "cloze#{type.id}_sol", :class => "hidden"}
