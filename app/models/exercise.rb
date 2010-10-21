@@ -53,7 +53,7 @@ class Exercise < ActiveRecord::Base
     template = File.read("public/exercise_export_template.haml")
     haml_engine = Haml::Engine.new(template)
     output = haml_engine.render(scope=self)
-    File.open("public/html/#{chapter.split(".").join("_")}.html", "w") do |f|
+    File.open("public/html/#{chapter.split("#").first.split(".").join("_")}.html", "w") do |f|
       f.write(output)
     end
   end
