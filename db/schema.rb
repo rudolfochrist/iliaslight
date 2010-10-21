@@ -9,13 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100812105240) do
+ActiveRecord::Schema.define(:version => 20101021101327) do
 
   create_table "clozes", :force => true do |t|
     t.integer  "exercise_id"
     t.text     "cloze_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sub_question"
   end
 
   create_table "dropdown_definitions", :force => true do |t|
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20100812105240) do
     t.integer  "exercise_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sub_question"
   end
 
   create_table "exercises", :force => true do |t|
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20100812105240) do
     t.text     "mark"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sub_question"
   end
 
   create_table "multiple_choice_options", :force => true do |t|
@@ -67,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20100812105240) do
     t.integer  "exercise_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sub_question"
   end
 
   create_table "single_choice_options", :force => true do |t|
@@ -81,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20100812105240) do
     t.integer  "exercise_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sub_question"
   end
 
   create_table "type_sequence_positions", :force => true do |t|

@@ -3,6 +3,9 @@
 		<strong>Single Choice</strong>
 		<%= link_to_remove_fields "remove", f %>
 	</p>
+	<p>
+	  Sub-question: <%= f.text_field :sub_question %>
+	</p>
 	<p>Please select only one checkbox</p>
 	<p><%= link_to_add_fields "Add option", f, :single_choice_options %></p>
 	<% f.fields_for :single_choice_options do |sc_builder| %>
