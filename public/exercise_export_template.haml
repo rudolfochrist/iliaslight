@@ -1,139 +1,154 @@
 !!! XML
 !!! 1.1
 %html{:xmlns => "http://www.w3.org/1999/xhtml"}
-	%head
-		%title= title
-		%link{:rel => "stylesheet", :href => "file:///android_asset/support/master.css"}/
-		%link{:rel => "stylesheet", :href => "../support/master.css"}/
-		%script{:src => "file:///android_asset/support/logic.js", :type => "text/javascript"}
-		%script{:src => "../support/logic.js", :type => "text/javascript"}
-		:javascript
-			window.onload = function() {
-				var help_btn = $("help_btn");
-				if (help_btn) {
-					help_btn.onclick = function() {
-						var help_text = $("help_text");
-						if (help_text.style.visibility === "hidden" ||
-							!help_text.style.visibility) {
-								help_text.style.visibility = "visible";
-						}
-						else {
-							help_text.style.visibility = "hidden";
-						};
-					};
-				}
-				if (getElementsByClassName("marktext").length > 0) {
-					initMarktexts();
-				};
-				
-				var done_btn = $("done_btn");
-				done_btn.onclick = function() {
-					var mc_solved = true;
-					var sc_solved = true;
-					var mark_solved = true;
-					var cloze_solved = true;
-					var drops_solved = true;
-					
-					if (getElementsByClassName("multiple_choice").length > 0) {
-						mc_solved = checkMultipleChoices();
-					};
-					
-					if (getElementsByClassName("marktext").length > 0) {
-						mark_solved = checkMarktexts();
-					};
-					
-					if (getElementsByClassName("gapquestion").length > 0) {
-						cloze_solved = checkGapQuestions();
-					};	
-					
-					if (getElementsByClassName("dropdown").length > 0) {
-						drops_solved = checkDropdowns();
-					};
-					
-					if (getElementsByClassName("single_choice").length > 0) {
-						sc_solved = checkSingleChoices();
-					};
-					
-					if (mc_solved && sc_solved && mark_solved && cloze_solved && drops_solved) {
-						window.abp.saveToDb(true);
-					}
-					else {
-						window.abp.saveToDb(false);
-					};
-				};
-			};
-			
-	%body
-		#question_text
-			%p
-				%strong= question
-		%hr/
-		- @export_type_order.each do |type|
-			- if type.class == MultipleChoice
-				%div{:class => "multiple_choice", :id => "mc#{type.id}"}
-					- type.multiple_choice_options.each do |option|
-						%p
-							%input{:type => "checkbox", :name => ("option" + option.id.to_s)}
-							= option.option
-				%div{:class => "hidden", :id => "mc#{type.id}_sol"}
-					- type.multiple_choice_options.each do |option|
-						- if option.check
-							%span= "option" + option.id.to_s
-				%hr/
-			- if type.class == Marktext
-				%div{:class => "marktext", :id => "marktext#{type.id}"}
-					%p
-						%em
-							- type.mark.gsub("\n", "<br/>").split.each do |word|
-								- if word.start_with? "#"
-									%span.mark= word.delete "#"
-								- else
-									%span= word
-				%hr/
-			- if type.class == Cloze
-				%div{:class => "gapquestion", :id => "cloze#{type.id}"}
-					- type.cloze_text.split.each_with_index do |word, i|
-						- if word.start_with? "#"
-							%input{:type => "text", :name => "gap" + i.to_s}
-						- else
-							= word
-				%div{:id => "cloze#{type.id}_sol", :class => "hidden"}
-					- type.cloze_text.split.each_with_index do |word, i|
-						- if word.start_with? "#"
-							%span{:id => "gap#{i}"}= word.delete "#"
-				%hr/
-			- if type.class == Dropdown
-				%div{:id => "drop#{type.id}", :class => "dropdown"}
-					- type.dropdown_definitions.each do |defi|
-						%p
-							= defi.definition
-							%select 
-								- defi.dropdown_options.each do |option|
-									- if option.check
-										%option.correct_option{:value => option.option}= option.option
-									- else
-										%option{:value => option.option}= option.option
-				%hr/
-			- if type.class == SingleChoice
-				%div{:class => "single_choice", :id => "sc#{type.id}"}
-					- type.single_choice_options.each do |option|
-						%p
-							%input{:type => "radio", :name => "option#{type.id}", :id => "sc_option#{option.id}"}
-							= option.option
-				%div{:id => "sc#{type.id}_sol", :class => "hidden"}
-					- type.single_choice_options.each do |option|
-						- if option.check
-							%span= "sc_option#{option.id}"
-				%hr/
+  %head
+    %title= title
+    %link{:rel => "stylesheet", :href => "file:///android_asset/support/master.css"}/
+    %link{:rel => "stylesheet", :href => "../support/master.css"}/
+    %script{:src => "file:///android_asset/support/logic.js", :type => "text/javascript"}
+    %script{:src => "../support/logic.js", :type => "text/javascript"}
+    :javascript
+      window.onload = function() {
+        var help_btn = $("help_btn");
+        if (help_btn) {
+          help_btn.onclick = function() {
+            var help_text = $("help_text");
+            if (help_text.style.visibility === "hidden" ||
+              !help_text.style.visibility) {
+                help_text.style.visibility = "visible";
+            }
+            else {
+              help_text.style.visibility = "hidden";
+            };
+          };
+        }
+        if (getElementsByClassName("marktext").length > 0) {
+          initMarktexts();
+        };
+        
+        var done_btn = $("done_btn");
+        done_btn.onclick = function() {
+          var mc_solved = true;
+          var sc_solved = true;
+          var mark_solved = true;
+          var cloze_solved = true;
+          var drops_solved = true;
+          
+          if (getElementsByClassName("multiple_choice").length > 0) {
+            mc_solved = checkMultipleChoices();
+          };
+          
+          if (getElementsByClassName("marktext").length > 0) {
+            mark_solved = checkMarktexts();
+          };
+          
+          if (getElementsByClassName("gapquestion").length > 0) {
+            cloze_solved = checkGapQuestions();
+          };  
+          
+          if (getElementsByClassName("dropdown").length > 0) {
+            drops_solved = checkDropdowns();
+          };
+          
+          if (getElementsByClassName("single_choice").length > 0) {
+            sc_solved = checkSingleChoices();
+          };
+          
+          if (mc_solved && sc_solved && mark_solved && cloze_solved && drops_solved) {
+            window.abp.saveToDb(true);
+          }
+          else {
+            window.abp.saveToDb(false);
+          };
+        };
+      };
+      
+  %body
+    #question_text
+      %p
+        %strong= question
+    %hr/
+    - @export_type_order.each do |type|
+      - if type.class == MultipleChoice
+        - unless type.sub_question.nil?
+          %p
+            %strong= type.sub_question
+        %div{:class => "multiple_choice", :id => "mc#{type.id}"}
+          - type.multiple_choice_options.each do |option|
+            %p
+              %input{:type => "checkbox", :name => ("option" + option.id.to_s)}
+              = option.option
+        %div{:class => "hidden", :id => "mc#{type.id}_sol"}
+          - type.multiple_choice_options.each do |option|
+            - if option.check
+              %span= "option" + option.id.to_s
+        %hr/
+      - if type.class == Marktext
+        - unless type.sub_question.nil?
+          %p
+            %strong= type.sub_question
+        %div{:class => "marktext", :id => "marktext#{type.id}"}
+          %p
+            %em
+              - type.mark.gsub("\n", "<br/>").split.each do |word|
+                - if word.start_with? "#"
+                  %span.mark= word.delete "#"
+                - else
+                  %span= word
+        %hr/
+      - if type.class == Cloze
+        - unless type.sub_question.nil?
+          %p
+            %strong= type.sub_question
+        %div{:class => "gapquestion", :id => "cloze#{type.id}"}
+          - type.cloze_text.split.each_with_index do |word, i|
+            - if word.start_with? "#"
+              %input{:type => "text", :name => "gap" + i.to_s}
+            - else
+              = word
+        %div{:id => "cloze#{type.id}_sol", :class => "hidden"}
+          - type.cloze_text.split.each_with_index do |word, i|
+            - if word.start_with? "#"
+              %span{:id => "gap#{i}"}= word.delete "#"
+        %hr/
+      - if type.class == Dropdown
+        - unless type.sub_question.nil?
+          %p
+            %strong= type.sub_question
+        %div{:id => "drop#{type.id}", :class => "dropdown"}
+          - type.dropdown_definitions.each do |defi|
+            %p
+              = defi.definition
+              %select 
+                - defi.dropdown_options.each do |option|
+                  - if option.check
+                    %option.correct_option{:value => option.option}= option.option
+                  - else
+                    %option{:value => option.option}= option.option
+        %hr/
+      - if type.class == SingleChoice
+        - unless type.sub_question.nil?
+          %p
+            %strong= type.sub_question
+        %div{:class => "single_choice", :id => "sc#{type.id}"}
+          - type.single_choice_options.each do |option|
+            %p
+              %input{:type => "radio", :name => "option#{type.id}", :id => "sc_option#{option.id}"}
+              = option.option
+        %div{:id => "sc#{type.id}_sol", :class => "hidden"}
+          - type.single_choice_options.each do |option|
+            - if option.check
+              %span= "sc_option#{option.id}"
+        %hr/
 
-		#footer
-			%a{:href => "?prev"}
-				%img{:src => "file:///android_asset/support/arrow_left_play.png", :alt => "Zurück", :id => "back_btn"}/
-			%input{:type => "button", :id => "done_btn", :name => "done_btn", :value => "Fertig"}
-			- unless help.blank?
-				%input{:type => "button", :name => "help_btn", :id => "help_btn", :value => "Hilfe"}
-			%a{:href => "?next"}
-				%img{:src => "file:///android_asset/support/arrow_right_play.png", :alt => "Weiter", :id => "next_btn"}
-		- unless help.blank?
-			#help_text.hidden
-				= help
+    #footer
+      %a{:href => "?prev"}
+        %img{:src => "file:///android_asset/support/arrow_left_play.png", :alt => "Zurück", :id => "back_btn"}/
+      %input{:type => "button", :id => "done_btn", :name => "done_btn", :value => "Fertig"}
+      - unless help.blank?
+        %input{:type => "button", :name => "help_btn", :id => "help_btn", :value => "Hilfe"}
+      %a{:href => "?next"}
+        %img{:src => "file:///android_asset/support/arrow_right_play.png", :alt => "Weiter", :id => "next_btn"}
+    - unless help.blank?
+      #help_text.hidden
+        = help
