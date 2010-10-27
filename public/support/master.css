@@ -29,3 +29,15 @@ table {
 #next_btn {
 	float: right;
 }
+
+input[type="text"] {
+	font-size:12pt;
+	text-align:center;
+	margin-left:-10px;
+	
+}
+
+.gapquestion{
+	word-spacing:13px;
+	margin-left:10px;
+}

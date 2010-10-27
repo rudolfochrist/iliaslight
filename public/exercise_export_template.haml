@@ -102,14 +102,16 @@
             %strong= type.sub_question
         %div{:class => "gapquestion", :id => "cloze#{type.id}"}
           - type.cloze_text.split.each_with_index do |word, i|
-            - if word.start_with? "#"
-              %input{:type => "text", :size => word.length.to_s, :name => "gap" + i.to_s}
-            - else
-              = word
+            - word.split(/(\(:\w+:\))/x).each_with_index do |char, j|
+              - if char =~ /\(:\w+:\)/
+                %input{:type => "text", :size => (char.length-4).to_s ,:name => "gap" +i.to_s+ j.to_s}
+              - else
+                = char
         %div{:id => "cloze#{type.id}_sol", :class => "hidden"}
           - type.cloze_text.split.each_with_index do |word, i|
-            - if word.start_with? "#"
-              %span{:id => "gap#{i}"}= word.delete "#"
+            - word.split(/(\(:\w+:\))/x).each_with_index do |char,j|
+              - if char =~ /\(:\w+:\)/
+                %span{:id => "gap#{i.to_s+j.to_s}"}= char.delete "(:)"
         %hr/
       - if type.class == Dropdown
         - unless type.sub_question.nil?
