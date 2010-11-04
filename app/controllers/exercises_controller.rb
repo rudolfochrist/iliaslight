@@ -56,6 +56,7 @@ class ExercisesController < ApplicationController
   
   def update
     @exercise = Exercise.find(params[:id])
+    params[:exercise][:chapter] = params[:exercise][:chapter] + "#" + Time.now.to_i.to_s
     if @exercise.update_attributes(params[:exercise])
       @exercise.export_to_html
       flash[:notice] = "Successfully updated exercise."

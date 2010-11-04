@@ -6,7 +6,11 @@
   </p>
   <p>
     <%= f.label :chapter %><br />
-	<%= f.text_field :chapter %>
+    <% if @exercise.chapter.blank? %>
+        <%= f.text_field :chapter %>
+    <% else %>
+	    <%= f.text_field :chapter ,:value => @exercise.chapter.split("#").first %>
+	<% end %>
   </p>
   <p>
     <%= f.label :question %><br />
