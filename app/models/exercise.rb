@@ -53,10 +53,19 @@ class Exercise < ActiveRecord::Base
     template = File.read("public/exercise_export_template.haml")
     haml_engine = Haml::Engine.new(template)
     output = haml_engine.render(scope=self)
-    File.open("public/html/#{chapter.split("#").first.split(".").join("_")}.html", "w") do |f|
-      f.write(output)
+    
+    if File.exists?("public/html")
+      File.open("public/html/#{chapter.split("#").first.split(".").join("_")}.html", "w") do |f|
+        f.write(output)
+      end
+    else 
+      Dir.mkdir("public/html")
+      File.open("public/html/#{chapter.split("#").first.split(".").join("_")}.html", "w") do |f|
+        f.write(output)
+      end
     end
   end
+
   
   def destroy_export
     begin
