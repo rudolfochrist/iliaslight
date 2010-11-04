@@ -1,5 +1,8 @@
 class ExercisesController < ApplicationController
+  USERNAME = "projektab"
+  PASSWORD = "c29cd86bb68a4c259f3b117b729eb2090d53bab2"
   
+  before_filter :authenticate
   
   def index
     @exercises = Exercise.all
@@ -70,33 +73,40 @@ class ExercisesController < ApplicationController
     redirect_to exercises_url
   end
   
-  def set_type_order
-    mcs = @exercise.multiple_choices.reverse
-    scs = @exercise.single_choices.reverse
-    marks = @exercise.marktexts.reverse
-    cloz = @exercise.clozes.reverse
-    drops = @exercise.dropdowns.reverse
-    order = @exercise.type_sequence_positions
-    type_order = Array.new
-    order.each do |type|
-      case type.type_name
-      when "multiple_choices"
-        obj = mcs.pop
-        type_order << obj unless obj.nil?
-      when "single_choices"
-        obj = scs.pop
-        type_order << obj unless obj.nil?
-      when "marktexts"
-        obj = marks.pop
-        type_order << obj unless obj.nil?
-      when "clozes"
-        obj = cloz.pop
-        type_order << obj unless obj.nil?
-      when "dropdowns"
-        obj = drops.pop
-        type_order << obj unless obj.nil?
+  private
+    def authenticate
+      authenticate_or_request_with_http_basic do |username, password|
+        username == USERNAME && Digest::SHA1.hexdigest(password) == PASSWORD
       end
     end
-    type_order
-  end
+    
+    def set_type_order
+      mcs = @exercise.multiple_choices.reverse
+      scs = @exercise.single_choices.reverse
+      marks = @exercise.marktexts.reverse
+      cloz = @exercise.clozes.reverse
+      drops = @exercise.dropdowns.reverse
+      order = @exercise.type_sequence_positions
+      type_order = Array.new
+      order.each do |type|
+        case type.type_name
+        when "multiple_choices"
+          obj = mcs.pop
+          type_order << obj unless obj.nil?
+        when "single_choices"
+          obj = scs.pop
+          type_order << obj unless obj.nil?
+        when "marktexts"
+          obj = marks.pop
+          type_order << obj unless obj.nil?
+        when "clozes"
+          obj = cloz.pop
+          type_order << obj unless obj.nil?
+        when "dropdowns"
+          obj = drops.pop
+          type_order << obj unless obj.nil?
+        end
+      end
+      type_order
+    end
 end
