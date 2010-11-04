@@ -6,6 +6,7 @@
 			<strong><%= exercise.chapter.split("#").first %> <%= exercise.title %></strong>
 			<%= link_to "Show", exercise %>
 			<%= link_to "Edit", edit_exercise_path(exercise) %>
+			<%= link_to "Duplicate", duplicate_exercise_path(exercise) %>
 			<%= link_to "Destroy", exercise, :confirm => "Are you sure?", :method => "delete" %>
 		</li>
 	<% end %>
