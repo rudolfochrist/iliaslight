@@ -1,4 +1,5 @@
 class Exercise < ActiveRecord::Base
+  acts_as_list
   validates_presence_of :chapter, :message => "can't be blank"
   validates_uniqueness_of :chapter, :message => "must be unique"
     

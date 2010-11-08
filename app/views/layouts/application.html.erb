@@ -4,7 +4,8 @@
   <head>
     <title><%= h(yield(:title) || "Untitled") %></title>
     <%= stylesheet_link_tag 'application' %>
-		<%= javascript_include_tag "jquery-1.4.2", "application", :cache => true %>
+		<%= javascript_include_tag "jquery-1.4.2", "application", "jquery-ui-1.8.6.custom.min",:cache => true %>
+		<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
     <%= yield(:head) %>
   </head>
   <body>
@@ -20,5 +21,6 @@
       
       <%= yield %>
     </div>
+    <%= yield :javascript%>
   </body>
 </html>

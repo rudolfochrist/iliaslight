@@ -5,7 +5,7 @@ class ExercisesController < ApplicationController
   before_filter :authenticate
   
   def index
-    @exercises = Exercise.all
+    @exercises = Exercise.all(:order => :position)
   end
   
   def show
@@ -74,6 +74,16 @@ class ExercisesController < ApplicationController
     redirect_to exercises_url
   end
   
+  def sort
+     @exercise = Exercise.all
+      @exercise.each do |exercise|
+        exercise.position = params[:exercise].index(exercise.id.to_s) + 1
+        exercise.save
+      end
+
+      render :nothing => true
+    end
+  
   private
     def authenticate
       authenticate_or_request_with_http_basic do |username, password|
@@ -110,4 +120,5 @@ class ExercisesController < ApplicationController
       end
       type_order
     end
+    
 end

@@ -99,4 +99,12 @@ textarea {
 	text-decoration: none;
 }
 
+#exercises {
+	
+	list-style-type:none;
+}
 
+li .handle {
+	font-size: 10px;
+	cursor:move;
+}

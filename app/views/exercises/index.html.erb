@@ -1,8 +1,9 @@
 <% title "Exercises" %>
 
-<ul>
+<ul id="exercises">
 	<% for exercise in @exercises %>
-		<li>
+		<li id="exercise_<%= exercise.id %>">
+		    <span class="handle">[drag]</span>
 			<strong><%= exercise.chapter.split("#").first %> <%= exercise.title %></strong>
 			<%= link_to "Show", exercise %>
 			<%= link_to "Edit", edit_exercise_path(exercise) %>
@@ -13,3 +14,26 @@
 </ul>
 
 <p><%= link_to "New Exercise", new_exercise_path %></p>
+
+<% content_for :javascript do %>
+  <% javascript_tag do %> 
+   
+    $(document).ready(function(){
+      $('#exercises').sortable({
+        axis: 'y',
+        dropOnEmpty: false,
+        handle: '.handle',
+        items: 'li',
+        opacity: 0.4,
+        scroll: true,
+        update: function(){
+          $.ajax({
+            type: 'post',
+            data: $('#exercises').sortable('serialize'),
+            dataType: 'script',
+            url: '/exercises/sort'})
+          }
+        });
+      });
+  <% end %>
+<% end %>
