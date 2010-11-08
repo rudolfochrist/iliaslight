@@ -4,7 +4,7 @@
 	<% for exercise in @exercises %>
 		<li id="exercise_<%= exercise.id %>">
 		    <span class="handle">[drag]</span>
-			<strong><%= exercise.chapter.split("#").first %> <%= exercise.title %></strong>
+			<strong><%= exercise.chapter %> <%= exercise.title %></strong>
 			<%= link_to "Show", exercise %>
 			<%= link_to "Edit", edit_exercise_path(exercise) %>
 			<%= link_to "Duplicate", duplicate_exercise_path(exercise) %>

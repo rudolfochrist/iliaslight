@@ -19,8 +19,6 @@ class ExercisesController < ApplicationController
   
   def create
     @exercise = Exercise.new(params[:exercise])
-  time = Time.now.to_i.to_s
-  @exercise.chapter = @exercise.chapter + ("#") + time
     if @exercise.save
       flash[:notice] = "Successfully created exercise."
       @exercise.export_to_html
@@ -37,9 +35,7 @@ class ExercisesController < ApplicationController
     # using deep_cloning plugin
     @dup = @exercise.clone :include => [:type_sequence_positions,
        {:multiple_choices => :multiple_choice_options}, {:single_choices => :single_choice_options}, :marktexts, :clozes, {:dropdowns => {:dropdown_definitions => :dropdown_options}}] 
-       
-    @dup.chapter = @exercise.chapter.split("#").first + "#" + Time.now.to_i.to_s
-    
+           
     if @dup.save
       flash[:notice] = "Successfully duplicated exercise."
       redirect_to :action => "edit", :id => @dup.id
@@ -56,7 +52,6 @@ class ExercisesController < ApplicationController
   
   def update
     @exercise = Exercise.find(params[:id])
-    params[:exercise][:chapter] = params[:exercise][:chapter] + "#" + Time.now.to_i.to_s
     if @exercise.update_attributes(params[:exercise])
       @exercise.export_to_html
       flash[:notice] = "Successfully updated exercise."
