@@ -1,8 +1,19 @@
 <div class="fields">
-  <p>
-    Sub-question: <%= f.text_field :sub_question %>
-  </p>
 	<p>
-		<%= f.text_area :cloze_text %>
+		<strong>Cloze</strong>
+		<%= link_to_remove_fields "remove", f %>
 	</p>
+	<p>The concealing words have to be wrapped in (: :). Insert linebreaks with &lt;br/&gt;.</p>
+	<div class="fields">
+      <p>
+        Sub-question: <%= f.text_field :sub_question %>
+      </p>
+    	<p>
+    		<%= f.text_area :cloze_text %>
+    	</p>
+    </div>
+    
+    <% if f.object.new_record? %>
+      <%= f.hidden_field :position, :class => "position_field" %>
+    <% end %>
 </div>

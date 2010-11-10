@@ -10,4 +10,8 @@
 		<%= render 'dropdown_definition_fields', :f => ddef_builder %>
 	<% end %>
 	<p><%= link_to_add_fields "Add definition", f, :dropdown_definitions %></p>
+	
+	<% if f.object.new_record? %>
+    <%= f.hidden_field :position, :class => "position_field" %>
+  <% end %>
 </div>

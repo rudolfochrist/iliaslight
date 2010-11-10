@@ -1,4 +1,4 @@
-<% form_for @exercise  do |f| %>
+<% form_for @exercise, :html => { :id => "exercise_form" }  do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :title %><br />
@@ -23,65 +23,43 @@
 	</p>
 	
 	<hr />
-		
-	<% unless @type_order.nil? %>
-		<% @type_order.each do |type| %>
-			
-			<% if type.class == MultipleChoice %>
-				<% f.fields_for :type_sequence_positions do |sequence_builder| %>
-					<%= sequence_builder.hidden_field :type_name, :value => "multiple_choices" %>
-				<% end %>
-				<% f.fields_for :multiple_choices, type do |mc_builder| %>
-					<%= render "multiple_choice_block", :f => mc_builder %>
-				<% end %>
-			<% end %>
-			
-			<% if type.class == SingleChoice %>
-				<% f.fields_for :type_sequence_positions do |sequence_builder| %>
-					<%= sequence_builder.hidden_field :type_name, :value => "single_choices" %>
-				<% end %>
-				<% f.fields_for :single_choices, type do |sc_builder| %>
-					<%= render "single_choice_block", :f => sc_builder %>
-				<% end %>
-			<% end %>
-			
-			<% if type.class == Marktext %>
-				<% f.fields_for :type_sequence_positions do |sequence_builder| %>
-					<%= sequence_builder.hidden_field :type_name, :value => "marktexts" %>
-				<% end %>
-				<% f.fields_for :marktexts, type do |mt_builder| %>
-					<%= render "marktext_block", :f => mt_builder %>
-				<% end %>
-			<% end %>
-			
-			<% if type.class == Cloze %>
-				<% f.fields_for :type_sequence_positions do |sequence_builder| %>
-					<%= sequence_builder.hidden_field :type_name, :value => "clozes" %>
-				<% end %>
-				<% f.fields_for :clozes, type do |c_builder| %>
-					<%= render "cloze_block", :f => c_builder %>
-				<% end %>
-			<% end %>
-			
-			<% if type.class == Dropdown %>
-				<% f.fields_for :type_sequence_positions do |sequence_builder| %>
-					<%= sequence_builder.hidden_field :type_name, :value => "dropdowns" %>
-				<% end %>
-				<% f.fields_for :dropdowns, type do |dd_builder| %>
-					<%= render "dropdown_block", :f => dd_builder %>
-				<% end %>
-			<% end %>
-			
-		<% end %>
-	<% end %>
+	
+	<% @type_sequence.each do |type| %>
+	  <% if type.class == Cloze %>
+      <% f.fields_for :clozes, type do |cloze_buidler| %>
+        <%= render "cloze_fields", :f => cloze_buidler %>
+      <% end %>
+
+    <% elsif type.class == Dropdown %>
+      <% f.fields_for :dropdowns, type do |dropdown_buidler| %>
+        <%= render "dropdown_fields", :f => dropdown_buidler %>
+      <% end %>
+  
+    <% elsif type.class == Marktext %>
+      <% f.fields_for :marktexts, type do |marktext_builder| %>
+        <%= render "marktext_fields", :f => marktext_builder %>
+      <% end %>
+    
+    <% elsif type.class == MultipleChoice %>
+      <% f.fields_for :multiple_choices, type do | multiple_choice_builder | %>
+        <%= render "multiple_choice_fields", :f => multiple_choice_builder %>
+      <% end %>
+    
+    <% elsif type.class == SingleChoice %>
+      <% f.fields_for :single_choices, type do | singel_choice_builder | %>
+        <%= render "single_choice_fields", :f => singel_choice_builder %>
+      <% end %>
+    <% end %>
+  <% end %>
+  
 	
 	<br />
 	<p>
-		<%= link_to_add_type "Add Multiple Choice", f, :multiple_choices %> |
-		<%= link_to_add_type "Add Single Choice", f, :single_choices %> |
-		<%= link_to_add_type "Add Marktext", f, :marktexts %> |
-		<%= link_to_add_type "Add Cloze", f, :clozes %> |
-		<%= link_to_add_type "Add Dropdown", f, :dropdowns %>
+		<%= link_to_add_fields "Add Multiple Choice", f, :multiple_choices %> |
+		<%= link_to_add_fields "Add Single Choice", f, :single_choices %> |
+		<%= link_to_add_fields "Add Marktext", f, :marktexts %> |
+		<%= link_to_add_fields "Add Cloze", f, :clozes %> |
+		<%= link_to_add_fields "Add Dropdown", f, :dropdowns %>
 	</p>
 	
 	<hr />

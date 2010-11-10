@@ -10,4 +10,8 @@
 	<% f.fields_for :multiple_choice_options do |mco_builder| %>
 		<%= render 'multiple_choice_option_fields', :f => mco_builder %>
 	<% end %>
+	
+	<% if f.object.new_record? %>
+    <%= f.hidden_field :position, :class => "position_field" %>
+  <% end %>
 </div>

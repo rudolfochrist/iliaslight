@@ -11,4 +11,8 @@
 	<% f.fields_for :single_choice_options do |sc_builder| %>
 		<%= render "single_choice_option_fields", :f => sc_builder %>
 	<% end %>
+	
+	<% if f.object.new_record? %>
+    <%= f.hidden_field :position, :class => "position_field" %>
+  <% end %>
 </div>

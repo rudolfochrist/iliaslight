@@ -7,10 +7,14 @@ function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g");
   $(link).parent().before(content.replace(regexp, new_id));
+  
+  var timeFlag = new Date().getTime();
+  $(link).parent().prev().children(".position_field").val(timeFlag);
 }
+
 $.ajaxSetup({ 
-  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
-})
+  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript");}
+});
 
 $(document).ready(function() {
 
@@ -25,5 +29,19 @@ $(document).ready(function() {
     settings.data = settings.data || "";
     settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(AUTH_TOKEN);
   });
-
+  
+  $("#exercise_form").submit(function() {
+     var $input = $(this).find("#exercise_chapter");
+     if (!$input.val()) {
+         if ($input.parent().attr("class") != "error") {
+             $input.parent().addClass("error");
+             $input.after("\tCan't be blank");
+         };    
+         
+         $input.focus();
+         return false;
+     };
+     return true;
+  });
+  
 });
