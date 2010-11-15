@@ -14,8 +14,8 @@
 </p>
 
 <p>
-	<%= link_to "Preview", "/html/#{@exercise.chapter.split(".").join("_")}.html"%>
-</p>
+	<%= link_to "Preview", preview_exercise_path(@exercise) %>
+</p> 
 
 <p>
   <%= link_to "Edit", edit_exercise_path(@exercise) %> |

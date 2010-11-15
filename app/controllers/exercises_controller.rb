@@ -2,7 +2,7 @@ class ExercisesController < ApplicationController
   USERNAME = "projektab"
   PASSWORD = "c29cd86bb68a4c259f3b117b729eb2090d53bab2"
   
-  before_filter :authenticate
+  # before_filter :authenticate
   
   def index
     @exercises = Exercise.all(:order => :position)
@@ -10,6 +10,16 @@ class ExercisesController < ApplicationController
   
   def show
     @exercise = Exercise.find(params[:id])
+  end
+  
+  def preview
+    @exercise = Exercise.find(params[:id])
+    
+    template = File.read("public/exercise_export_template.haml")
+    haml_engine = Haml::Engine.new(template)
+    output = haml_engine.render(scope=@exercise)
+    
+    render :text => output
   end
   
   def new
