@@ -3,8 +3,8 @@
 		<strong>Dropdown</strong>
 		<%= link_to_remove_fields "remove", f %>
 	</p>
-	<p>
-	  Sub-question: <%= f.text_field :sub_question %>
+	<p class="subquestion">
+	  Sub-question: <%= f.text_area :sub_question %>
 	</p>
 	<% f.fields_for :dropdown_definitions do |ddef_builder| %>
 		<%= render 'dropdown_definition_fields', :f => ddef_builder %>

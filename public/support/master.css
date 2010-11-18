@@ -41,3 +41,18 @@ input[type="text"] {
 	word-spacing:13px;
 	margin-left:10px;
 }
+.even {
+	background-color:#dcdcdc;
+	margin: 10px;
+	padding: 20px;
+}
+
+.odd {
+	background-color:#a9a9a9;
+	margin: 10px;
+	padding: 20px;
+}
+
+a {
+	text-decoration:none;
+}

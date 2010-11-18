@@ -14,7 +14,7 @@ class ExercisesController < ApplicationController
   
   def preview
     @exercise = Exercise.find(params[:id])
-    
+    @evenodd = true;
     template = File.read("public/exercise_export_template.haml")
     haml_engine = Haml::Engine.new(template)
     output = haml_engine.render(scope=@exercise)

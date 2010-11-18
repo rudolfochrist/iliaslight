@@ -1,5 +1,5 @@
 <% title "Exercises" %>
-
+<p><%= link_to "New Exercise", new_exercise_path %></p>
 <ul id="exercises">
 	<% for exercise in @exercises %>
 		<li id="exercise_<%= exercise.id %>">
