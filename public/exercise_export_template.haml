@@ -92,10 +92,10 @@
               %p
                 %em
                   - type.mark.split.each_with_index do |word, i|
-                    - word.split(/(\(:\w+:\))/x).each_with_index do |char, j|
+                    - word.split(/(\(:.+:\))/x).each_with_index do |char, j|
                       :erb
-                        <% if char =~ /\(:\w+:\)/x %>
-                          <span class="mark"><%= char.delete("(:)") %></span>
+                        <% if char =~ /\(:.+:\)/x %>
+                          <span class="mark"><%= char.split(/\(:(.+):\)/x) %></span>
                         <% else %>
                           <span><%= char %></span>
                         <% end %>
@@ -105,16 +105,19 @@
                 %strong= type.sub_question
             %div{:class => "gapquestion", :id => "cloze#{type.id}"}
               - type.cloze_text.split.each_with_index do |word, i|
-                - word.split(/(\(:\w+:\))/x).each_with_index do |char, j|
-                  - if char =~ /\(:\w+:\)/x
-                    %input{:type => "text", :size => (char.length-4).to_s ,:name => "gap" +i.to_s+ j.to_s}
-                  - else
-                    = char
+                - word.split(/(\(:.+:\))/x).each_with_index do |char, j|
+                  :erb
+                    <% if char =~ /\(:.+:\)/x %>
+                    <input type ="text" size=<%= (char.length-4).to_s %> 
+                    name = "gap<%= i.to_s+ j.to_s %>" />
+                    <% else %>
+                      <span><%= char %></span>
+                    <% end %>
             %div{:id => "cloze#{type.id}_sol", :class => "hidden"}
               - type.cloze_text.split.each_with_index do |word, i|
-                - word.split(/(\(:\w+:\))/x).each_with_index do |char,j|
-                  - if char =~ /\(:\w+:\)/x
-                    %span{:id => "gap#{i.to_s+j.to_s}"}= char.delete "(:)"
+                - word.split(/(\(:.+:\))/x).each_with_index do |char,j|
+                  - if char =~ /\(:.+:\)/x
+                    %span{:id => "gap#{i.to_s+j.to_s}"}= char.split(/\(:(.+):\)/x)
           - elsif type.class == Dropdown
             - unless type.sub_question.nil?
               %p
@@ -166,10 +169,10 @@
               %p
                 %em
                   - type.mark.split.each_with_index do |word, i|
-                    - word.split(/(\(:\w+:\))/x).each_with_index do |char, j|
+                    - word.split(/(\(:.+:\))/x).each_with_index do |char, j|
                       :erb
-                        <% if char =~ /\(:\w+:\)/x %>
-                          <span class="mark"><%= char.delete("(:)") %></span>
+                        <% if char =~ /\(:.+:\)/x %>
+                          <span class="mark"><%= char.split(/\(:(.+):\)/x) %></span>
                         <% else %>
                           <span><%= char %></span>
                         <% end %>
@@ -179,16 +182,19 @@
                 %strong= type.sub_question
             %div{:class => "gapquestion", :id => "cloze#{type.id}"}
               - type.cloze_text.split.each_with_index do |word, i|
-                - word.split(/(\(:\w+:\))/x).each_with_index do |char, j|
-                  - if char =~ /\(:\w+:\)/x
-                    %input{:type => "text", :size => (char.length-4).to_s ,:name => "gap" +i.to_s+ j.to_s}
-                  - else
-                    = char
+                - word.split(/(\(:.+:\))/x).each_with_index do |char, j|
+                  :erb
+                    <% if char =~ /\(:.+:\)/x %>
+                    <input type ="text" size=<%= (char.length-4).to_s %> 
+                    name = "gap<%= i.to_s+ j.to_s %>" />
+                    <% else %>
+                      <span><%= char %></span>
+                    <% end %>
             %div{:id => "cloze#{type.id}_sol", :class => "hidden"}
               - type.cloze_text.split.each_with_index do |word, i|
-                - word.split(/(\(:\w+:\))/x).each_with_index do |char,j|
-                  - if char =~ /\(:\w+:\)/x
-                    %span{:id => "gap#{i.to_s+j.to_s}"}= char.delete "(:)"
+                - word.split(/(\(:.+:\))/x).each_with_index do |char,j|
+                  - if char =~ /\(:.+:\)/x
+                    %span{:id => "gap#{i.to_s+j.to_s}"}= char.split(/\(:(.+):\)/x)
           - elsif type.class == Dropdown
             - unless type.sub_question.nil?
               %p
