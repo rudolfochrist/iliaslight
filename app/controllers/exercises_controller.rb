@@ -6,6 +6,11 @@ class ExercisesController < ApplicationController
   
   def index
     @exercises = Exercise.all(:order => :position)
+    
+    respond_to do | format |
+      format.html
+      format.zip {pack_zip}
+    end
   end
   
   def show
@@ -89,5 +94,29 @@ class ExercisesController < ApplicationController
       authenticate_or_request_with_http_basic do |username, password|
         username == USERNAME && Digest::SHA1.hexdigest(password) == PASSWORD
       end
+    end
+    
+    def pack_zip
+      #send_file("public/images/rails.png")
+      template = File.read("public/exercise_export_template.haml")
+      haml_engine = Haml::Engine.new(template)
+      t = Tempfile.new("Exercises#{request.remote_ip}")
+      Zip::ZipOutputStream.open(t.path) do |zos|
+        @exercises.each do |exercise|
+          # Create a new entry with some arbitrary name
+          file = Tempfile.new(exercise.chapter)
+          output = haml_engine.render(scope=exercise)  
+          file.write(output)
+          file.flush
+          title = exercise.chapter.gsub(".","_")
+          zos.put_next_entry(title+(".html"))
+          zos.print IO.read(file.path)
+        end
+      end
+      # End of the block  automatically closes the file.
+      # Send it using the right mime type, with a download window and some nice file name.
+      send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "ExercisesLight.zip"
+      # The temp file will be deleted some time...
+      t.close
     end
 end
