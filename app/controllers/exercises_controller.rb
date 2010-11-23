@@ -108,7 +108,7 @@ class ExercisesController < ApplicationController
           output = haml_engine.render(scope=exercise)  
           file.write(output)
           file.flush
-          title = exercise.chapter.gsub(".","_")
+          title = exercise.chapter.gsub(".","_")+("_")+exercise.position.to_s
           zos.put_next_entry(title+(".html"))
           zos.print IO.read(file.path)
         end

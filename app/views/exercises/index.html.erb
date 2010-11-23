@@ -3,12 +3,14 @@
 <ul id="exercises">
 	<% for exercise in @exercises %>
 		<li id="exercise_<%= exercise.id %>">
+		  <p>
 		    <span class="handle">[drag]</span>
 			<strong><%= exercise.chapter %> <%= exercise.title %></strong>
 			<%= link_to "Show", exercise %>
 			<%= link_to "Edit", edit_exercise_path(exercise) %>
 			<%= link_to "Duplicate", duplicate_exercise_path(exercise) %>
 			<%= link_to "Destroy", exercise, :confirm => "Are you sure?", :method => "delete" %>
+			</p>
 		</li>
 	<% end %>
 </ul>
