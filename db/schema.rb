@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20101115080823) do
     t.text     "cloze_text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sub_question"
+    t.text     "sub_question"
     t.integer  "position"
   end
 
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20101115080823) do
     t.integer  "exercise_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sub_question"
+    t.text     "sub_question"
     t.integer  "position"
   end
 
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20101115080823) do
     t.text     "mark"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sub_question"
+    t.text     "sub_question"
     t.integer  "position"
   end
 
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20101115080823) do
     t.integer  "exercise_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sub_question"
+    t.text     "sub_question"
     t.integer  "position"
   end
 
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20101115080823) do
     t.integer  "exercise_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sub_question"
+    t.text     "sub_question"
     t.integer  "position"
   end
 

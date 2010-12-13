@@ -1,6 +1,6 @@
 class AddSubQuestionToCloze < ActiveRecord::Migration
   def self.up
-    add_column :clozes, :sub_question, :string
+    add_column :clozes, :sub_question, :text
   end
 
   def self.down
