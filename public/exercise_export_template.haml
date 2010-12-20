@@ -7,8 +7,73 @@
     %link{:rel => "stylesheet", :href => "../../support/master.css"}/
     %script{:src => "file:///android_asset/support/logic.js", :type => "text/javascript"}
     %script{:src => "../../support/logic.js", :type => "text/javascript"}
+    
+    -# USB related javascripts
+    %script{:src => "../javascript/baseFunctions.js", :type => "text/javascript"}
+    %script{:src => "../javascript/exerciseDataFunctions.js", :type => "text/javascript"}
+    %script{:src => "../javascript/treeDataFunctions.js", :type => "text/javascripts"}
+    
     :javascript
+    
+      var allDataText,exerciseDataText,dataIsReady=false;
+
+        //Wartet bis Daten verfuegbar sind oder maximal 2 Sekunden
+        function exerciseDoMarkWrapper(status,timeOut){
+          if(dataIsReady==true){
+            try{
+              var timestamp=new Date();
+              saveXML(
+                getDirectory()+'..'+browserData.directory_seperator
+                  +'xml'+browserData.directory_seperator+'exerciseData.xml',
+                exerciseDoMark(
+                  exerciseDataText,
+                  getIdFromExerciseFilename(
+                    allDataText,
+                    window.location.pathname.substring(
+                      window.location.pathname.lastIndexOf('/')+1
+                    )
+                  ),
+                  status,
+                  timestamp.getTime()
+                )
+              );
+            }catch(e){
+              alert(e);
+            }
+          }else{
+            if(timeOut<20){//Weniger als 2 Sekunden
+              timeOut++;
+              setTimeout("exerciseDoMarkWrapper('"+status+"',"+timeOut+");",100);
+            }else{
+              console.log("Cannot load data.")
+            }
+          }
+        }
+    
       window.onload = function() {
+        
+        try {
+          getBrowserData();
+          dataIsReady=false;
+          if(browserData.firefox){
+
+            allDataText=loadText(getDirectory()+'..'+browserData.directory_seperator
+              +'xml'+browserData.directory_seperator+'allData.xml');
+
+            exerciseDataText=loadText(getDirectory()+'..'+browserData.directory_seperator+'xml'+browserData.directory_seperator+'exerciseData.xml');
+            dataIsReady=true;
+          }else{
+
+            setTimeout("allDataText=loadText(getDirectory()+'xml'+browserData.directory_seperator+'allData.xml');"+
+              "exerciseDataText=loadText(getDirectory()+'xml'+browserData.directory_seperator+'exerciseData.xml');"+
+              "dataIsReady=true;",2000);
+          };
+        }
+        catch(err) {
+          console.log("You're probably not running the USB version! Please contact the developer(s).")
+        };
+        
+      
         var help_btn = $("help_btn");
         if (help_btn) {
           help_btn.onclick = function() {
@@ -55,10 +120,20 @@
           };
           
           if (mc_solved && sc_solved && mark_solved && cloze_solved && drops_solved) {
-            window.abp.saveToDb(true);
+            if (typeof window.abp != "undefined") {
+              window.abp.saveToDb(true);
+            }
+            else {
+              exerciseDoMarkWrapper('wrong',0);
+            };
           }
           else {
-            window.abp.saveToDb(false);
+            if (typeof window.abp != "undefined") {
+              window.abp.saveToDb(false);
+            }
+            else {
+              exerciseDoMarkWrapper('wrong',0);
+            };
           };
         };
       };
