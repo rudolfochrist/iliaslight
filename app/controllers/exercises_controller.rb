@@ -115,7 +115,7 @@ class ExercisesController < ApplicationController
       end
       # End of the block  automatically closes the file.
       # Send it using the right mime type, with a download window and some nice file name.
-      send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "ExercisesLight.zip"
+      send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "iliaslight_exercises_export.zip"
       # The temp file will be deleted some time...
       t.close
     end
