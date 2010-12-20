@@ -73,8 +73,7 @@
           -@evenodd = false
           - if type.class == MultipleChoice
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:class => "multiple_choice", :id => "mc#{type.id}"}
               - type.multiple_choice_options.each do |option|
                 %p
@@ -86,8 +85,7 @@
                   %span= "option" + option.id.to_s
           - elsif type.class == Marktext
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:class => "marktext", :id => "marktext#{type.id}"}
               %p
                 %em
@@ -101,8 +99,7 @@
                         <% end %>
           - elsif type.class == Cloze
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:class => "gapquestion", :id => "cloze#{type.id}"}
               - type.cloze_text.split.each_with_index do |word, i|
                 - word.split(/(\(:.+:\))/x).each_with_index do |char, j|
@@ -120,8 +117,7 @@
                     %span{:id => "gap#{i.to_s+j.to_s}"}= char.split(/\(:(.+):\)/x)
           - elsif type.class == Dropdown
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:id => "drop#{type.id}", :class => "dropdown"}
               - type.dropdown_definitions.each do |defi|
                 %p
@@ -134,8 +130,7 @@
                         %option{:value => option.option}= option.option
           - elsif type.class == SingleChoice
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:class => "single_choice", :id => "sc#{type.id}"}
               - type.single_choice_options.each do |option|
                 %p
@@ -150,8 +145,7 @@
           -@evenodd = true
           - if type.class == MultipleChoice
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:class => "multiple_choice", :id => "mc#{type.id}"}
               - type.multiple_choice_options.each do |option|
                 %p
@@ -163,8 +157,7 @@
                   %span= "option" + option.id.to_s
           - elsif type.class == Marktext
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:class => "marktext", :id => "marktext#{type.id}"}
               %p
                 %em
@@ -178,8 +171,7 @@
                         <% end %>
           - elsif type.class == Cloze
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:class => "gapquestion", :id => "cloze#{type.id}"}
               - type.cloze_text.split.each_with_index do |word, i|
                 - word.split(/(\(:.+:\))/x).each_with_index do |char, j|
@@ -197,8 +189,7 @@
                     %span{:id => "gap#{i.to_s+j.to_s}"}= char.split(/\(:(.+):\)/x)
           - elsif type.class == Dropdown
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:id => "drop#{type.id}", :class => "dropdown"}
               - type.dropdown_definitions.each do |defi|
                 %p
@@ -211,8 +202,7 @@
                         %option{:value => option.option}= option.option
           - elsif type.class == SingleChoice
             - unless type.sub_question.nil?
-              %p
-                %strong= type.sub_question
+              %p= type.sub_question
             %div{:class => "single_choice", :id => "sc#{type.id}"}
               - type.single_choice_options.each do |option|
                 %p
