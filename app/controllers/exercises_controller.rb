@@ -1,8 +1,5 @@
 class ExercisesController < ApplicationController
-  USERNAME = "projektab"
-  PASSWORD = "c29cd86bb68a4c259f3b117b729eb2090d53bab2"
-  
-  # before_filter :authenticate
+  before_filter :authenticate
   
   def index
     @exercises = Exercise.all(:order => :position)
