@@ -4,7 +4,7 @@ config/database.yml
 log/*
 tmp/*
 public/html/*
-
+config/initializers/cookie_verification_secret.rb
 
 ## generic files to ignore
 *~
