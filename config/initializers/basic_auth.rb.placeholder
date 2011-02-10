@@ -1,0 +1,4 @@
+# Be sure to restart your server when you modify this file.
+
+USERNAME = 'INSERT USERNAME HERE'
+PASSWORD = 'INSERT PASSWORD HASH HERE'
