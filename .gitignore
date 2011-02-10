@@ -5,6 +5,7 @@ log/*
 tmp/*
 public/html/*
 config/initializers/cookie_verification_secret.rb
+config/initializers/session_store.rb
 
 ## generic files to ignore
 *~
