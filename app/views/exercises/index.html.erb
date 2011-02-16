@@ -34,7 +34,7 @@
             type: 'post',
             data: $('#exercises').sortable('serialize'),
             dataType: 'script',
-            url: '/iliaslight/exercises/sort'}) // URL must be customized for environment
+            url: '<%= sort_exercises_path %>'}) 
           }
         });
       });
